@@ -69,7 +69,7 @@ echo_chunks    <- FALSE #Toggle for debugging.
 message_chunks <- FALSE #Toggle for debugging.
 options(width=100) # number of characters to display in the output (dflt = 80)
 ggplot2::theme_set(ggplot2::theme_minimal()) # clean theme for publications
-read_chunk("analysis/eda-3/eda-3.R") #This allows knitr to call chunks from R script
+read_chunk("analysis/eda-1/eda-1.R") #This allows knitr to call chunks from R script
 ```
 
 # Environment

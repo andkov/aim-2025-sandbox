@@ -29,37 +29,36 @@ library(testit)   # For asserting conditions meet expected patterns.
 # can display interactive plots. This is optional and wrapped in tryCatch so
 # the script still runs when httpgd is absent or fails to start.
 if (requireNamespace("httpgd", quietly = TRUE)) {
-		tryCatch({
-				# Attempt to start httpgd server (API may vary by version); quiet on success
-				if (is.function(httpgd::hgd)) {
-						httpgd::hgd()
-				} else if (is.function(httpgd::httpgd)) {
-						httpgd::httpgd()
-				} else {
-						# Generic call attempt; will be caught if function not found
-						httpgd::hgd()
-				}
-				message("httpgd started (if available). Configure your VS Code R extension to use it for plots.")
-		}, error = function(e) {
-				message("httpgd detected but failed to start: ", conditionMessage(e))
-		})
+	tryCatch({
+		# Attempt to start httpgd server (API may vary by version); quiet on success
+		if (is.function(httpgd::hgd)) {
+			httpgd::hgd()
+		} else if (is.function(httpgd::httpgd)) {
+			httpgd::httpgd()
+		} else {
+			# Generic call attempt; will be caught if function not found
+			httpgd::hgd()
+		}
+		message("httpgd started (if available). Configure your VS Code R extension to use it for plots.")
+	}, error = function(e) {
+		message("httpgd detected but failed to start: ", conditionMessage(e))
+	})
 } else {
-		message("httpgd not installed. To enable interactive plotting in VS Code, install httpgd (binary recommended on Windows) or use other devices (svg/png).")
+	message("httpgd not installed. To enable interactive plotting in VS Code, install httpgd (binary recommended on Windows) or use other devices (svg/png).")
 }
 
 # ---- load-sources ------------------------------------------------------------
 base::source("./scripts/common-functions.R") # project-level
 base::source("./scripts/operational-functions.R") # project-level
-base::source("./scripts/silent-mini-eda.R") # project-level
 
 # ---- declare-globals ---------------------------------------------------------
 
-local_root <- "./analysis/eda-3/"
+local_root <- "./analysis/eda-1/"
 local_data <- paste0(local_root, "data-local/") # for local outputs
 
 if (!fs::dir_exists(local_data)) {fs::dir_create(local_data)}
 
-data_private_derived <- "./data-private/derived/eda-3/"
+data_private_derived <- "./data-private/derived/eda-1/"
 if (!fs::dir_exists(data_private_derived)) {fs::dir_create(data_private_derived)}
 
 prints_folder <- paste0(local_root, "prints/")
@@ -80,31 +79,29 @@ db <- connect_books_db("main")  # connects to the final analytical database
 db_tables_all <- DBI::dbListTables(db)
 
 # Keep only tables that do NOT end with the `_wide` suffix (we'll import these)
-# db_tables <- db_tables_all[!grepl("_long$", db_tables_all)]
-# db_tables <- db_tables_all[grepl("_long$", db_tables_all)]
-db_tables <- db_tables_all
+db_tables <- db_tables_all[!grepl("_wide$", db_tables_all)]
 
 # Read selected tables into a named list (tbls) and also assign sanitized names
 # into the global environment for convenience. This keeps the connection open
 # while we read data, then disconnects.
 message("Reading ", length(db_tables), " non-_wide tables from DB: ", paste(db_tables, collapse = ", "))
 tbls <- lapply(db_tables, function(t) {
-		message(" - ", t)
-		dplyr::as_tibble(DBI::dbReadTable(db, t))
+	message(" - ", t)
+	DBI::dbReadTable(db, t)
 })
 names(tbls) <- db_tables
 
 # helper to convert table names into safe R object names
 sanitize_name <- function(x) {
-		nm <- gsub("[^A-Za-z0-9_]+", "_", x)
-		nm <- gsub("^([0-9])", "_\\1", nm)
-		nm
+	nm <- gsub("[^A-Za-z0-9_]+", "_", x)
+	nm <- gsub("^([0-9])", "_\\1", nm)
+	nm
 }
 
 # assign into global env using sanitized names
 for (nm in db_tables) {
-		obj_name <- sanitize_name(nm)
-		assign(obj_name, tbls[[nm]], envir = .GlobalEnv)
+	obj_name <- sanitize_name(nm)
+	assign(obj_name, tbls[[nm]], envir = .GlobalEnv)
 }
 # Close the database connection
 DBI::dbDisconnect(db)
@@ -112,10 +109,11 @@ DBI::dbDisconnect(db)
 # Print concise summary of loaded tables
 cat("📊 Loaded tables (name: rows):\n")
 for (nm in db_tables) {
-		df <- tbls[[nm]]
-		rows <- if (is.data.frame(df)) nrow(df) else NA
-		cat("   -", nm, ":", rows, "rows\n")
+	df <- tbls[[nm]]
+	rows <- if (is.data.frame(df)) nrow(df) else NA
+	cat("   -", nm, ":", rows, "rows\n")
 }
+
 # ---- inspect-data -------------------------------------
 ds_language
 
