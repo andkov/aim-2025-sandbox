@@ -1,22 +1,47 @@
-# Quick Start Template
+# Books of Ukraine - Data Pipeline
 
-> [No one beginning a data science project should start from a blinking cursor.](https://towardsdatascience.com/better-collaborative-data-science-d2006b9c0d39) <br/>...Templatization is a best practice for things like using common directory structure across projects...<br/> -[Megan Risdal](https://towardsdatascience.com/@meganrisdal) Kaggle Product Lead.
+This project analyzes Ukrainian book publication data from the [Ukrainian Book Chamber](http://www.ukrbook.net/), providing insights into publishing trends, language use, genre prevalence, and regional distributions since 2005.
 
-This project contains the files and settings commonly used in analysis projects with R. A developer can start an analysis repository more quickly by copying these files. The purpose of each directory is described in its README file. Some aspects are more thoroughly described in [Collaborative Data Science Practices](https://ouhscbbmc.github.io/data-science-practices-1/).
+## 🚀 **Ellis Pipeline**: 4-Stage Data Processing System
 
-> GOA Edition <br/> While aiming to replicate [RAnalysisSkeleton](https://github.com/wibeasley/RAnalysisSkeleton), the current repository flavours the template with analytic conventions specific to the Government of Alberta (GOA).
+Our **modular Ellis Pipeline** transforms raw data into analysis-ready formats:
 
-# Establishing a Workstation for Analysis
+- **Stage 0**: Core book publication data (5 main categories)
+- **Stage 1**: Ukrainian administrative data integration (hromadas, oblasts)  
+- **Stage 2**: Modular custom data with **bilingual Ukrainian/English support**
+- **Final**: Analysis-ready tables + CSV exports, aka default database
 
-1.  Install and configure the needed software, as described in the [Workstation](https://ouhscbbmc.github.io/data-science-practices-1/workstation.html) chapter of [*Collaborative Data Science Practices*](https://ouhscbbmc.github.io/data-science-practices-1/). Select the programs to meet your needs, and if in doubt, cover the Required Installation section and then pick other tools as necessary.
+### 🌟 **Key Features**:
+- **Bilingual Support**: Input Ukrainian or English data, get standardized English output
+- **Configuration-Driven**: Add custom data without R coding  
+- **Reproducible**: Complete pipeline reproduction from scratch
+- **Multi-Format Output**: SQLite databases + CSV files for external tools
 
-2.  Download the repo to your local machine. One option is to [clone](https://docs.github.com/en/free-pro-team@latest/github/creating-cloning-and-archiving-repositories/cloning-a-repository) it.
+## 📚 **Getting Started**
 
-3.  On your local machine, open the project in [RStudio](https://rstudio.com/products/rstudio/) by double-clicking [quick-start-template.Rproj](quick-start-template.Rproj) in the root of the downloaded repo.
+1. **Setup**: Follow `guides/setup-google-access.md` for authentication
+2. **Quick Start**: See `guides/getting-started.md` 
+3. **Add Custom Data**: Use `guides/custom-data-guide.md` (supports Ukrainian/English inputs)
+4. **Full Documentation**: Browse `guides/` directory
 
-4.  Install the packages needed for this repo. Within the RStudio console, execute these two lines. The first line installs a package. The second line inspects the repo's [DESCRIPTION](DESCRIPTION) file to identify and install the prerequisites.
+## 🎯 **For Analysts**
 
-    ``` r
-    remotes::install_github(repo="OuhscBbmc/OuhscMunge")
-    OuhscMunge::update_packages_addin()
-    ```
+**Ready-to-use Analytical Database**: `data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite`
+
+**CSV Exports**: Available in `data-private/derived/manipulation/CSV/` for external tools
+
+**Analysis Templates**: Explore `analysis/` directory for example workflows
+
+---
+
+## ⚠️ PowerShell tasks and Execution Policy
+
+Some development tasks in `.vscode/tasks.json` invoke PowerShell scripts. To allow these to run on machines with restricted PowerShell execution policy, the tasks include the flags `-ExecutionPolicy Bypass -NoProfile` when invoking PowerShell. This does not change the system's execution policy; it only instructs the PowerShell process started by VS Code to bypass the policy for that run.
+
+If you prefer to change your user execution policy permanently instead, run PowerShell as Administrator and set:
+
+```powershell
+Set-ExecutionPolicy -Scope CurrentUser -ExecutionPolicy RemoteSigned
+```
+
+Only do that if you understand the security implications. The current task approach is minimally invasive and safe for development workflows.

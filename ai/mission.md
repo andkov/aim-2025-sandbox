@@ -1,19 +1,22 @@
 # teleology-mission-why.md
 
-> Current content is an example. Please replace with project-sepcific material. 
-
-This files serves as a compass for AI collaborators, articulating the project's purpose, epistemic stance, and analytic goals. It ensures that all AI agents operate within a shared framework of understanding, aligned with the human analyst's intentions.
-
+This file defines the foundational logic, constraints, and epistemological commitments of the analytic project.
 
 In a human–AI creative symbiosis, the human serves not merely as an operator, but as a **philosopher–scientist**—the conductor of meaning. Their role is to define the framework within which the AI can execute and translate, but not originate, analytic purpose.
 
+### Epistemic Aim
 
+Investigate and understand publishing trends in Ukraine since 2005. 
 
-Refer to `./data-private/raw/research_request.md` for the language that humans used to articulate this  research request. Based on this inital request, we articulated the following epistemic aims (i.e. what we want to learn). The language of these aims may evolve as we refine our understanding of the research problem and the data available.
+Understand and describe regional difference (difference based on geography).
 
-
-### Epistemic Aims
-(what do we want to learn?)
+Detect interesting patterns and relationships between the use of russian language in published book and the larger cultural, political, and economic context of Ukraine.
 
 ### Technical Aims
-(what deliverables do we want to produce?)
+
+A collection of reproducible scripted reports (e.g. .R, .qmd) that explore, analyze, and visualize the data, with clear documentation of methods and findings.
+
+
+### Specific Deliverables
+
+a set of EDA reports that explore the data from multiple angles, including temporal trends, regional differences, and language use patterns.
