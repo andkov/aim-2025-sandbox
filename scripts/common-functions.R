@@ -55,13 +55,30 @@ neat <- function(x, output_format = "html"){
 }
 
 
-# ----- database-connection-functions ----------------------------------------
+# ----- data-utility-functions -----------------------------------------------
+
+
+
+# Function to safely convert numeric values 
+safe_numeric_convert <- function(x) {
+  cleaned <- as.character(x)
+  cleaned <- gsub("[^0-9.\\s-]", "", cleaned)
+  cleaned <- gsub("\\s+", "", cleaned)
+  cleaned[cleaned == "" | cleaned == "-" | cleaned == "NULL" | 
+          cleaned == "NA" | cleaned == "n/a" | is.na(cleaned)] <- "0"
+  cleaned <- gsub("\\.{2,}", ".", cleaned)
+  result <- suppressWarnings(as.numeric(cleaned))
+  result[is.na(result)] <- 0
+  return(result)
+}
+
+
+
+# ---- Database Connection Functions ----
 
 #' Connect to Books of Ukraine Database
 #' 
-#' @description 
-#' Modern standardized database connection using centralized configuration.
-#' Supports different database stages for specific analytical needs.
+#' Connects to the specified stage of the Books of Ukraine database.
 #' This replaces the outdated config::get() approach that was causing issues.
 #' 
 #' @param db_type Character. Database type to connect to:
@@ -86,105 +103,73 @@ neat <- function(x, output_format = "html"){
 #' # Always close connection when done
 #' DBI::dbDisconnect(db)
 connect_books_db <- function(db_type = "main", config_path = "config.yml") {
-  if (!requireNamespace("yaml", quietly = TRUE)) {
-    stop("yaml package required. Install with: install.packages('yaml')")
+  
+  # Check if config package is available
+  if (!requireNamespace("config", quietly = TRUE)) {
+    stop("The 'config' package is required but not installed. Please install it with: install.packages('config')")
   }
+  
+  # Check if DBI package is available  
   if (!requireNamespace("DBI", quietly = TRUE)) {
-    stop("DBI package required. Install with: install.packages('DBI')")
+    stop("The 'DBI' package is required but not installed. Please install it with: install.packages('DBI')")
   }
+  
+  # Check if RSQLite package is available
   if (!requireNamespace("RSQLite", quietly = TRUE)) {
-    stop("RSQLite package required. Install with: install.packages('RSQLite')")
+    stop("The 'RSQLite' package is required but not installed. Please install it with: install.packages('RSQLite')")
+  }
+  
+  # Validate db_type parameter
+  valid_types <- c("main", "stage_0", "stage_1", "stage_2")
+  if (!db_type %in% valid_types) {
+    stop("Invalid db_type '", db_type, "'. Must be one of: ", paste(valid_types, collapse = ", "))
+  }
+  
+  # Check if config file exists
+  if (!file.exists(config_path)) {
+    stop("Configuration file not found: ", config_path)
   }
   
   # Load configuration
-  if (!file.exists(config_path)) {
-    stop(paste0("Configuration file not found: ", config_path))
+  tryCatch({
+    config <- config::get(file = config_path)
+  }, error = function(e) {
+    stop("Failed to load configuration from ", config_path, ": ", e$message)
+  })
+  
+  # Get database path
+  if (is.null(config$database$books_of_ukraine[[db_type]])) {
+    stop("Database configuration not found for type '", db_type, "' in ", config_path)
   }
   
-  config <- yaml::read_yaml(config_path)
+  db_path <- config$database$books_of_ukraine[[db_type]]
   
-  # Handle nested config structure (config$default$database vs config$database)  
-  if ("default" %in% names(config)) {
-    config <- config$default
-  }
-  
-  # Get database path based on type
-  db_path <- switch(db_type,
-    "main" = config$database$books_of_ukraine$main,
-    "stage_0" = config$database$books_of_ukraine$stage_0,
-    "stage_1" = config$database$books_of_ukraine$stage_1,
-    "stage_2" = config$database$books_of_ukraine$stage_2,
-    stop(paste0("Unknown db_type: ", db_type, ". Use 'main', 'stage_0', 'stage_1', or 'stage_2'."))
-  )
-  
-  if (is.null(db_path)) {
-    stop(paste0("Database path not found in config for type: ", db_type))
-  }
-  
-  # Check if database exists
+  # Check if database file exists
   if (!file.exists(db_path)) {
-    warning(paste0("Database file not found: ", db_path, 
-                  "\nRun Ellis pipeline scripts to create databases."))
+    stop("Database file not found: ", db_path, 
+         "\nNote: This database should have been created by the books-of-ukraine ETL pipeline.")
   }
   
   # Create connection
-  DBI::dbConnect(RSQLite::SQLite(), db_path)
+  tryCatch({
+    con <- DBI::dbConnect(RSQLite::SQLite(), db_path)
+    
+    # Verify connection by listing tables
+    tables <- DBI::dbListTables(con)
+    if (length(tables) == 0) {
+      DBI::dbDisconnect(con)
+      stop("Database appears to be empty (no tables found): ", db_path)
+    }
+    
+    message("✓ Connected to ", db_type, " database: ", basename(db_path))
+    message("✓ Available tables: ", paste(tables, collapse = ", "))
+    
+    return(con)
+    
+  }, error = function(e) {
+    stop("Failed to connect to database ", db_path, ": ", e$message)
+  })
 }
-
-#' Get Database Path from Configuration
-#' 
-#' @description 
-#' Utility function to get database path without creating connection.
-#' Useful for file operations or when connection object not needed.
-#' Updated to support all Ellis pipeline stages.
-#' 
-#' @param db_type Character. Database type ("main", "stage_0", "stage_1", "stage_2")
-#' @param config_path Character. Path to config.yml file
-#' 
-#' @return Character. Full path to database file
-get_db_path <- function(db_type = "main", config_path = "config.yml") {
-  if (!requireNamespace("yaml", quietly = TRUE)) {
-    stop("yaml package required. Install with: install.packages('yaml')")
-  }
-  
-  config <- yaml::read_yaml(config_path)
-  
-  # Handle nested config structure (config$default$database vs config$database)
-  if ("default" %in% names(config)) {
-    config <- config$default
-  }
-  
-  db_path <- switch(db_type,
-    "main" = config$database$books_of_ukraine$main,
-    "stage_0" = config$database$books_of_ukraine$stage_0,
-    "stage_1" = config$database$books_of_ukraine$stage_1,
-    "stage_2" = config$database$books_of_ukraine$stage_2,
-    stop(paste0("Unknown db_type: ", db_type, ". Use 'main', 'stage_0', 'stage_1', or 'stage_2'."))
-  )
-  
-  if (is.null(db_path)) {
-    stop(paste0("Database path not found in config for type: ", db_type))
-  }
-  
-  return(db_path)
-}
-
-
-
-# Function to safely convert numeric values 
-safe_numeric_convert <- function(x) {
-  cleaned <- as.character(x)
-  cleaned <- gsub("[^0-9.\\s-]", "", cleaned)
-  cleaned <- gsub("\\s+", "", cleaned)
-  cleaned[cleaned == "" | cleaned == "-" | cleaned == "NULL" | 
-          cleaned == "NA" | cleaned == "n/a" | is.na(cleaned)] <- "0"
-  cleaned <- gsub("\\.{2,}", ".", cleaned)
-  result <- suppressWarnings(as.numeric(cleaned))
-  result[is.na(result)] <- 0
-  return(result)
-}
-
-
 
 # ---- Silent Mini-EDA Integration ----
 # Load silent mini-EDA functions for behind-the-scenes data analysis

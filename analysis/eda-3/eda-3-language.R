@@ -131,4 +131,7 @@ ds_language
 # We would like to understand how  publishing books in ukraine very by language and time.  
 ds_language_prep <- silent_mini_eda("ds_language")
 
-# ds_language_plop_prep <- smart_plot("ds_language","dynamics of publishing by language and year") # this appears to be less useful at this moment. 
+ds_language_mini_eda <- silent_mini_eda("ds_language")
+ds_language_mini_eda %>% print()
+ds_language_mini_eda %>% 
+  write_mini_eda_json(script_dir = local_root, overwrite = TRUE)

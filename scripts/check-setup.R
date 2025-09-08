@@ -1,9 +1,9 @@
 # Project Setup Validation Script
-# Run this script to check if your environment is ready for the books-of-ukraine project
+# Run this script to check if your environment is ready for the AIM 2025 Sandbox project
 # Usage: Rscript scripts/check-setup.R
 
 cat("=========================================================\n")
-cat("📚 BOOKS OF UKRAINE PROJECT - SETUP VALIDATION\n")
+cat("🧠 AIM 2025 SANDBOX - SETUP VALIDATION\n")
 cat("=========================================================\n")
 cat("Checking your development environment...\n\n")
 
@@ -47,10 +47,7 @@ for(dir in required_dirs) {
 
 required_files <- c(
   "flow.R",
-  "config.yml",
-  "scripts/google-auth-helper.R",
-  "scripts/setup-google-auth.R",
-  "manipulation/0-ellis.R"
+  "config.yml"
 )
 
 for(file in required_files) {
@@ -62,12 +59,13 @@ for(file in required_files) {
 cat("\n2. R PACKAGES\n")
 cat("-------------\n")
 required_packages <- c(
-  "googlesheets4",
   "dplyr", 
   "tidyr",
   "magrittr",
   "stringr",
   "janitor",
+  "ggplot2",
+  "tibble",
   "DBI",
   "RSQLite",
   "config"
@@ -97,7 +95,7 @@ for(pkg in optional_packages) {
 
 cat("\n3. AUTHENTICATION\n")
 cat("-----------------\n")
-secrets_exists <- check_file(".secrets", "Google Sheets auth cache (.secrets)", required = FALSE)
+
 gitignore_exists <- check_file(".gitignore", ".gitignore file", required = FALSE)
 
 # Check if .secrets is in .gitignore
@@ -110,33 +108,7 @@ if(gitignore_exists) {
   }
 }
 
-# Test Google Sheets authentication
-cat("\n4. GOOGLE SHEETS ACCESS\n")
-cat("-----------------------\n")
-if(secrets_exists) {
-  tryCatch({
-    suppressMessages({
-      library(googlesheets4)
-      source("scripts/google-auth-helper.R")
-      setup_google_auth(interactive = FALSE)
-    })
-    
-    if(gs4_has_token()) {
-      cat("Google Sheets authentication        ✅\n")
-    } else {
-      cat("Google Sheets authentication        ❌\n")
-      setup_errors <- c(setup_errors, "Google Sheets authentication failed")
-    }
-  }, error = function(e) {
-    cat("Google Sheets authentication        ❌\n")
-    setup_errors <- c(setup_errors, paste("Authentication error:", e$message))
-  })
-} else {
-  cat("Google Sheets authentication        ❌ (No .secrets folder)\n")
-  setup_errors <- c(setup_errors, "Google Sheets not configured")
-}
-
-cat("\n5. DATA DIRECTORIES\n")
+cat("\n4. DATA DIRECTORIES\n")
 cat("-------------------\n")
 data_dirs <- c(
   "data-private/derived",
@@ -149,6 +121,32 @@ for(dir in data_dirs) {
   check_file(dir, paste("Data directory:", dir), required = FALSE)
 }
 
+cat("\n5. DATABASE AVAILABILITY\n")
+cat("------------------------\n")
+databases <- c(
+  "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+  "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite",
+  "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite",
+  "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+)
+
+db_names <- c(
+  "Main database (analysis-ready)",
+  "Stage 0 database (core books)",
+  "Stage 1 database (+ admin data)",  
+  "Stage 2 database (+ custom data)"
+)
+
+for(i in seq_along(databases)) {
+  if(file.exists(databases[i])) {
+    size_mb <- round(file.size(databases[i]) / 1024^2, 2)
+    cat(sprintf("%-40s ✅ (%s MB)\n", db_names[i], size_mb))
+  } else {
+    cat(sprintf("%-40s ❌\n", db_names[i]))
+    setup_warnings <- c(setup_warnings, paste("Database not found:", basename(databases[i])))
+  }
+}
+
 cat("\n=========================================================\n")
 cat("📋 SETUP SUMMARY\n")
 cat("=========================================================\n")
@@ -157,7 +155,7 @@ if(length(setup_errors) == 0 && length(setup_warnings) == 0) {
   cat("🎉 PERFECT! Your environment is fully configured!\n")
   cat("\n✅ You can now run:\n")
   cat("   • Rscript flow.R\n")
-  cat("   • Rscript manipulation/0-ellis.R\n")
+  cat("   • Rscript flow.R\n")
   cat("   • Any analysis scripts in the analysis/ folder\n")
   
 } else if(length(setup_errors) == 0) {
@@ -195,16 +193,10 @@ if(length(setup_errors) == 0 && length(setup_warnings) == 0) {
     cat("      install.packages(c(", paste0("'", pkgs, "'", collapse = ", "), "))\n")
   }
   
-  # Google Sheets setup
-  if(any(grepl("Google Sheets|Authentication", setup_errors))) {
-    cat("   2. Set up Google Sheets authentication:\n")
-    cat("      Rscript scripts/setup-google-auth.R\n")
-  }
-  
   # Missing directories
   missing_dirs <- setup_errors[grepl("Missing directory:", setup_errors)]
   if(length(missing_dirs) > 0) {
-    cat("   3. Create missing directories or re-clone the repository\n")
+    cat("   2. Create missing directories or re-clone the repository\n")
   }
 }
 

@@ -5,41 +5,25 @@ rm(list = ls(all.names = TRUE)) # Clear the memory of variables from previous ru
 
 # ---- environment-check ------------------------------------------------------
 # Check if environment is properly set up before running the workflow
-cat("🔍 Checking project setup...\n")
+cat("🔍 Checking AIM 2025 Sandbox setup...\n")
 
 # Quick validation of critical requirements
 setup_ok <- TRUE
 setup_messages <- c()
 
-# Check critical files
-if (!file.exists("scripts/google-auth-helper.R")) {
-  setup_ok <- FALSE
-  setup_messages <- c(setup_messages, "❌ Missing: scripts/google-auth-helper.R")
-}
-
-if (!file.exists("manipulation/0-ellis.R")) {
-  setup_ok <- FALSE  
-  setup_messages <- c(setup_messages, "❌ Missing: manipulation/0-ellis.R")
-}
-
-if (!file.exists("manipulation/1-ellis.R")) {
-  setup_ok <- FALSE  
-  setup_messages <- c(setup_messages, "❌ Missing: manipulation/1-ellis.R")
-}
-
-# Check authentication
-if (!dir.exists(".secrets")) {
-  setup_ok <- FALSE
-  setup_messages <- c(setup_messages, "❌ Google Sheets authentication not configured")
-}
-
-# Check critical packages
-required_packages <- c("googlesheets4", "dplyr", "tidyr", "magrittr")
+# Check critical packages for analysis
+required_packages <- c("dplyr", "tidyr", "magrittr", "ggplot2", "DBI", "RSQLite", "config")
 for (pkg in required_packages) {
   if (!requireNamespace(pkg, quietly = TRUE)) {
     setup_ok <- FALSE
     setup_messages <- c(setup_messages, paste("❌ Missing package:", pkg))
   }
+}
+
+# Check data availability
+if (!dir.exists("data-private")) {
+  setup_ok <- FALSE
+  setup_messages <- c(setup_messages, "❌ Missing: data-private directory")
 }
 
 # Report results
@@ -48,8 +32,6 @@ if (!setup_ok) {
   for (msg in setup_messages) {
     cat("  ", msg, "\n")
   }
-  cat("\n🔧 To fix these issues, run:\n")
-  cat("     Rscript scripts/check-setup.R\n")
   cat("\n⚠️  Flow execution will continue, but may fail.\n")
   cat("=====================================\n\n")
 } else {
@@ -136,43 +118,20 @@ ds_rail  <- tibble::tribble(
   ~fx         , ~path,
 
   # ===============================
-  # PHASE 1: DATA IMPORT & PREPARATION  
+  # ANALYSIS REPORTS & DOCUMENTATION
   # ===============================
   
-  # Main ETL (Extract-Transform-Load) from Google Sheets to local formats
-  # "run_r"     , "manipulation/0-ellis.R",              # Core data import and prep - creates long and wide format datasets
-  # "run_r"     , "manipulation/1-ellis-ua-admin.R",              # Enhance geography data with bookstore infrastructure - creates enhanced datasets
-  # "run_r"     , "manipulation/2-ellis-extra.R",              # Adding extra custom data in future developments
-  # "run_r"     , "manipulation/last-ellis.R",              
-  
-  # ===============================
-  # PHASE 2: ANALYSIS SCRIPTS
-  # ===============================
-  
-  # Core analysis scripts that depend on the manipulated data
-  #"run_r"     , "analysis/eda-1/eda-1.R",              # Main exploratory data analysis script
-  #"run_r"     , "analysis/Data-visualization/Data-visual.R",  # Data visualization script
-  # "run_r"     , "analysis/report-example-2/1-scribe.R", # Scribe script for analysis-ready data
-  
-  # ===============================
-  # PHASE 3: REPORTS & DOCUMENTATION
-  # ===============================
-  
-  # Primary analysis reports (Quarto format) - WITH IMPROVED ERROR HANDLING
-  #"run_qmd"   , "analysis/eda-1/eda-1.qmd",            # Main exploratory data analysis report
+  # Primary analysis reports (Quarto format)
   "run_qmd"   , "analysis/eda-3/eda-3.qmd",            # Main exploratory data analysis report
-  #"run_qmd"   , "analysis/Data-visualization/Data-visual.qmd", # Data visualization report
-  # "run_qmd"   , "analysis/report-example-2/eda-1.qmd", # Analysis report example
   
-  # Documentation and template examples
+  # Documentation and template examples (uncomment as needed)
   # "run_qmd"   , "analysis/analysis-templatization/README.qmd" # Analysis documentation template
   
   # ===============================
-  # PHASE 4: ADVANCED REPORTS (OPTIONAL)
+  # ADDITIONAL REPORTS (OPTIONAL)
   # ===============================  
   # Commented out by default - uncomment as needed
   
-  # "run_qmd"   , "analysis/report-example-3/eda-1.qmd",        # Additional EDA report
   # "run_qmd"   , "analysis/report-example/annotation-layer-quarto.qmd", # Annotation layer example
   # "run_qmd"   , "analysis/report-example/combined-in-quarto.qmd",      # Combined report example  
   # "run_qmd"   , "analysis/report-example/combined-in-quarto-alt.qmd"   # Alternative combined report

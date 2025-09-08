@@ -1,36 +1,42 @@
-# Books of Ukraine - Data Pipeline
+# AIM 2025 Sandbox - AI-Enhanced Research Analytics
 
-This project analyzes Ukrainian book publication data from the [Ukrainian Book Chamber](http://www.ukrbook.net/), providing insights into publishing trends, language use, genre prevalence, and regional distributions since 2005.
+This project provides a research analytics environment with integrated AI support, memory systems, and reproducible analysis workflows. It combines data analysis capabilities with advanced AI assistance for social science research.
 
-## 🚀 **Ellis Pipeline**: 4-Stage Data Processing System
+## 🧠 **AI-Enhanced Features**
 
-Our **modular Ellis Pipeline** transforms raw data into analysis-ready formats:
+- **Project Memory System**: Persistent knowledge graph for research insights and decisions
+- **Context Management**: Dynamic AI context loading for specific analytical tasks  
+- **Copilot Integration**: GitHub Copilot optimized for research analytics workflows
+- **Multi-Modal Analysis**: Support for various data types and analytical approaches
 
-- **Stage 0**: Core book publication data (5 main categories)
-- **Stage 1**: Ukrainian administrative data integration (hromadas, oblasts)  
-- **Stage 2**: Modular custom data with **bilingual Ukrainian/English support**
-- **Final**: Analysis-ready tables + CSV exports, aka default database
+## 📊 **Research Analytics Capabilities**
 
-### 🌟 **Key Features**:
-- **Bilingual Support**: Input Ukrainian or English data, get standardized English output
-- **Configuration-Driven**: Add custom data without R coding  
-- **Reproducible**: Complete pipeline reproduction from scratch
-- **Multi-Format Output**: SQLite databases + CSV files for external tools
+- **Reproducible Workflows**: Scripted analysis pipelines with version control
+- **Template System**: Pre-built templates for common research tasks
+- **Documentation Integration**: Seamless integration of analysis and documentation
+- **Multi-Format Output**: Reports in various formats (HTML, PDF, etc.)
 
-## 📚 **Getting Started**
+## � **Getting Started**
 
-1. **Setup**: Follow `guides/setup-google-access.md` for authentication
-2. **Quick Start**: See `guides/getting-started.md` 
-3. **Add Custom Data**: Use `guides/custom-data-guide.md` (supports Ukrainian/English inputs)
-4. **Full Documentation**: Browse `guides/` directory
+1. **Setup**: Ensure R and required packages are installed
+2. **Data**: Place your data in `data-private/` directory
+3. **Analysis**: Use templates in `analysis/` directory  
+4. **AI Support**: Leverage the memory system and context management tools
 
-## 🎯 **For Analysts**
+## 🎯 **For Researchers**
 
-**Ready-to-use Analytical Database**: `data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite`
+**Database Access**: Four-stage database system with prepared data from books-of-ukraine project:
+- `connect_books_db("main")` - Final analytical database (analysis-ready)  
+- `connect_books_db("stage_0")` - Core books data only
+- `connect_books_db("stage_1")` - Books + Ukrainian administrative data
+- `connect_books_db("stage_2")` - Books + admin + custom data
 
-**CSV Exports**: Available in `data-private/derived/manipulation/CSV/` for external tools
+**Quick Start**: Run `Rscript scripts/test-database-connection.R` to verify database access
 
-**Analysis Templates**: Explore `analysis/` directory for example workflows
+**Analysis Templates**: Ready-to-use templates in `analysis/` directory  
+**AI Memory System**: Use `ai/memory-hub.md` to manage research insights  
+**Context Management**: Dynamic AI assistance via the `./ai/` system  
+**Documentation**: Comprehensive guides in `guides/` directory
 
 ---
 

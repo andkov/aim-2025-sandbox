@@ -8,8 +8,8 @@ param(
     [switch]$GoogleAuth
 )
 
-Write-Host "BOOKS OF UKRAINE PROJECT STATUS CHECK" -ForegroundColor Magenta
-Write-Host "=====================================" -ForegroundColor Magenta
+Write-Host "AIM 2025 SANDBOX PROJECT STATUS CHECK" -ForegroundColor Magenta
+Write-Host "====================================" -ForegroundColor Magenta
 
 # 1. Check project structure
 Write-Host ""
@@ -21,9 +21,8 @@ $criticalPaths = @(
     "data-public",
     "data-private",
     "analysis",
-    "manipulation/0-ellis.R",
     "config.yml",
-    "books-of-ukraine.Rproj"
+    "aim-2025-sandbox.Rproj"
 )
 
 foreach ($path in $criticalPaths) {
@@ -34,63 +33,56 @@ foreach ($path in $criticalPaths) {
     }
 }
 
-# 2. Books of Ukraine specific checks
+# 2. Data availability checks
 Write-Host ""
-Write-Host "Step 2: Books of Ukraine Specific Components" -ForegroundColor Cyan
+Write-Host "Step 2: Data Availability" -ForegroundColor Cyan
 
-# Check Google authentication setup
-if (Test-Path "google-service-account.json") {
-    Write-Host "OK Google service account configured" -ForegroundColor Green
-} else {
-    Write-Host "WARNING: Google service account not found" -ForegroundColor Yellow
-    Write-Host "  See guides/setup-google-access.md for setup instructions" -ForegroundColor Gray
-}
-
-# Check Ukrainian publishing data directories
-$ukraineDataPaths = @(
-    "data-private/derived/manipulation",
-    "data-private/derived/manipulation/SQLite",
-    "data-private/derived/manipulation/CSV"
+# Check data directories
+$dataPaths = @(
+    "data-private",
+    "data-public"
 )
 
-foreach ($path in $ukraineDataPaths) {
+foreach ($path in $dataPaths) {
     if (Test-Path $path) {
         Write-Host "OK $path" -ForegroundColor Green
     } else {
-        Write-Host "MISSING $path (will be created by 0-ellis.R)" -ForegroundColor Yellow
+        Write-Host "MISSING $path" -ForegroundColor Red
     }
 }
 
-# Check Ellis pipeline databases
-Write-Host "`n=== Ellis Pipeline Databases ===" -ForegroundColor Cyan
-
-# Stage 0: Core database (from 0-ellis.R)
-if (Test-Path "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite") {
-    $dbSize = (Get-Item "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite").Length
-    $dbSizeMB = [math]::Round($dbSize / 1MB, 2)
-    Write-Host "OK Stage 0 (Core) database found ($dbSizeMB MB)" -ForegroundColor Green
+# Check for any existing data files
+if (Test-Path "data-private/*") {
+    $dataCount = (Get-ChildItem -Path "data-private" -Recurse -File).Count
+    Write-Host "OK data-private contains $dataCount files" -ForegroundColor Green
 } else {
-    Write-Host "MISSING Stage 0 database (will be created by 0-ellis.R)" -ForegroundColor Yellow
+    Write-Host "WARNING: data-private appears empty" -ForegroundColor Yellow
 }
 
-# Stage 1: UA Admin database (from 1-ellis-ua-admin.R)  
-if (Test-Path "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite") {
-    $dbSize = (Get-Item "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite").Length
-    $dbSizeMB = [math]::Round($dbSize / 1MB, 2)
-    Write-Host "OK Stage 1 (UA Admin) database found ($dbSizeMB MB)" -ForegroundColor Green
-} else {
-    Write-Host "MISSING Stage 1 database (will be created by 1-ellis-ua-admin.R)" -ForegroundColor Yellow
+# Check for database files
+Write-Host ""
+Write-Host "Available Databases:" -ForegroundColor Yellow
+$databases = @(
+    "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+    "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite",
+    "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite", 
+    "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+)
+
+$dbNames = @("Main (analysis-ready)", "Stage 0 (core books)", "Stage 1 (+ admin data)", "Stage 2 (+ custom data)")
+
+for ($i = 0; $i -lt $databases.Length; $i++) {
+    $db = $databases[$i]
+    $name = $dbNames[$i]
+    if (Test-Path $db) {
+        $size = [math]::Round((Get-Item $db).Length / 1MB, 2)
+        Write-Host "OK $name ($size MB)" -ForegroundColor Green
+    } else {
+        Write-Host "MISSING $name" -ForegroundColor Red
+    }
 }
 
-# Final: Default analysis database (from last-ellis.R)
-if (Test-Path "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite") {
-    $dbSize = (Get-Item "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite").Length
-    $dbSizeMB = [math]::Round($dbSize / 1MB, 2)
-    Write-Host "OK Default analysis database found ($dbSizeMB MB)" -ForegroundColor Green
-} else {
-    Write-Host "MISSING Default database (will be created by last-ellis.R)" -ForegroundColor Yellow
-    Write-Host "  Run manipulation/0-ellis.R to create database" -ForegroundColor Gray
-}
+
 
 # 3. Git status
 Write-Host ""
@@ -181,7 +173,7 @@ if ($GoogleAuth) {
 }
 
 Write-Host ""
-Write-Host "BOOKS OF UKRAINE PROJECT STATUS CHECK COMPLETE" -ForegroundColor Magenta
+Write-Host "AIM 2025 SANDBOX PROJECT STATUS CHECK COMPLETE" -ForegroundColor Magenta
 
 # Optional detailed output
 if ($Detailed) {
