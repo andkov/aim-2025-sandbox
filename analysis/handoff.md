@@ -51,7 +51,7 @@ ds_bookstores <- DBI::dbReadTable(db, "ds_bookstores")
 DBI::dbDisconnect(db)
 
 # Alternative connections for specific needs:
-# stage1_db <- connect_books_db("stage_1")  # For enhanced territorial analysis
+# Note: stage_1 database removed to focus on analysis-ready data
 # stage2_db <- connect_books_db("stage_2")  # For comprehensive source data
 ```
 
@@ -162,20 +162,20 @@ ds_purpose %>%
 **Columns**: `year`, `purpose`, `title_count`, `copy_count`, `purpose_ua`  
 **Use for**: Government classification trends, publication purpose analysis
 
-### Enhanced Geographic Data (Stage 1+)
+### Enhanced Geographic Data (Stage 2)
 
-For deeper territorial analysis, connect to Stage 1 database:
+For deeper territorial analysis, connect to Stage 2 database:
 
 ```r
 # Access enhanced geographic data with administrative hierarchy
-stage1_db <- connect_books_db("stage_1")
+stage2_db <- connect_books_db("stage_2")
 
 # Examine oblast-level aggregations with demographic data
-ua_oblasts <- DBI::dbReadTable(stage1_db, "ua_oblasts_aggregated")
+ua_oblasts <- DBI::dbReadTable(stage2_db, "ua_oblasts_aggregated")
 head(ua_oblasts)
 
 # Regional classifications
-regions <- DBI::dbReadTable(stage1_db, "dim_regions") 
+regions <- DBI::dbReadTable(stage2_db, "dim_regions") 
 table(regions$region_en)  # Center/North/West/South classifications
 
 # Dimensional tables for lookups
