@@ -8,8 +8,8 @@ param(
     [switch]$GoogleAuth
 )
 
-Write-Host "AIM 2025 SANDBOX PROJECT STATUS CHECK" -ForegroundColor Magenta
-Write-Host "====================================" -ForegroundColor Magenta
+Write-Host "BOOKS OF UKRAINE PROJECT STATUS CHECK" -ForegroundColor Magenta
+Write-Host "=====================================" -ForegroundColor Magenta
 
 # 1. Check project structure
 Write-Host ""
@@ -21,8 +21,9 @@ $criticalPaths = @(
     "data-public",
     "data-private",
     "analysis",
+    "manipulation/0-ellis.R",
     "config.yml",
-    "aim-2025-sandbox.Rproj"
+    "books-of-ukraine.Rproj"
 )
 
 foreach ($path in $criticalPaths) {
