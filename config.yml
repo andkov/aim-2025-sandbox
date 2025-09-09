@@ -2,18 +2,14 @@ default:
   project_name: "aim-2025-sandbox"
   
   # Database Configuration - Access to prepared data from books-of-ukraine
-  # Stages provide different levels of data integration:
-  # - stage_0: Core foundation (books data only)
-  # - stage_1: + Ukrainian administrative data
-  # - stage_2: + Custom/extra data integration  
+  # Available databases:
   # - main: Final analytical database (optimized for analysts)
+  # - stage_2: Comprehensive database with custom additions
   database:
     books_of_ukraine:
-      main: "./data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite"
-      stage_0: "./data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite"  
-      stage_1: "./data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite"
-      stage_2: "./data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
-  
+      main: "./data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite"
+      stage_2: "./data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+
   # Basic project configuration
   directories:
     cache: "./ai/"

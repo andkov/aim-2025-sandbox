@@ -7,11 +7,9 @@ cat("=== AIM 2025 SANDBOX: DATABASE CONNECTION TEST ===\n\n")
 source("scripts/common-functions.R")
 
 # Test all database stages
-db_stages <- c("main", "stage_0", "stage_1", "stage_2")
+db_stages <- c("main", "stage_2")
 stage_descriptions <- c(
   "main" = "Final analytical database",
-  "stage_0" = "Core books data only", 
-  "stage_1" = "Books + Ukrainian administrative data",
   "stage_2" = "Books + admin + custom data"
 )
 
@@ -45,6 +43,6 @@ cat("=== DATABASE CONNECTION TEST COMPLETE ===\n")
 cat("\nTo use in your analysis scripts:\n")
 cat('  library(DBI)\n')
 cat('  source("scripts/common-functions.R")\n')
-cat('  db <- connect_books_db("main")  # or stage_0, stage_1, stage_2\n')
+cat('  db <- connect_books_db("main")  # or stage_2\n')
 cat('  data <- dbGetQuery(db, "SELECT * FROM your_table LIMIT 10")\n')
 cat('  dbDisconnect(db)\n')

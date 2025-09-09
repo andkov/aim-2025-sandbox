@@ -83,8 +83,6 @@ safe_numeric_convert <- function(x) {
 #' 
 #' @param db_type Character. Database type to connect to:
 #'   - "main" (default): Final analytical database (books-of-ukraine.sqlite)
-#'   - "stage_0": Core books data only (books-of-ukraine-0.sqlite)
-#'   - "stage_1": Books + Ukrainian administrative data (books-of-ukraine-1.sqlite)
 #'   - "stage_2": Books + admin + custom data (books-of-ukraine-2.sqlite)
 #' @param config_path Character. Path to config.yml file. Default: "config.yml"
 #' 
@@ -94,8 +92,8 @@ safe_numeric_convert <- function(x) {
 #' # Standard connection for analysis
 #' db <- connect_books_db()
 #' 
-#' # Connect to specific stage for territorial analysis
-#' db <- connect_books_db("stage_1")
+#' # Connect to comprehensive database
+#' db <- connect_books_db("stage_2")
 #' 
 #' # Connect to comprehensive database with all data
 #' db <- connect_books_db("stage_2")
@@ -120,7 +118,7 @@ connect_books_db <- function(db_type = "main", config_path = "config.yml") {
   }
   
   # Validate db_type parameter
-  valid_types <- c("main", "stage_0", "stage_1", "stage_2")
+  valid_types <- c("main", "stage_2")
   if (!db_type %in% valid_types) {
     stop("Invalid db_type '", db_type, "'. Must be one of: ", paste(valid_types, collapse = ", "))
   }

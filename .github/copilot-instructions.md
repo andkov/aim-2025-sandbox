@@ -147,7 +147,6 @@ When working with .R + qmd pairs (.R and .qmd scripts connect via read_chunk() f
 # ✅ CORRECT: Use configuration functions
 source("./scripts/common-functions.R")
 db <- connect_books_db("main")           # For analysis-ready data
-db <- connect_books_db("stage_1")        # For territorial analysis  
 db <- connect_books_db("stage_2")        # For comprehensive data
 
 # ✅ CORRECT: Get path from config for file operations
@@ -159,8 +158,6 @@ db_path <- get_db_path("main")
 
 #### Available Database Types:
 - **"main"**: Final analytical database (optimized for analysts)
-- **"stage_0"**: Core books data only
-- **"stage_1"**: Core + Ukrainian administrative data  
 - **"stage_2"**: Comprehensive database with custom additions
 
 #### Before Any Database Operation:

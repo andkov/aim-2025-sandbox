@@ -25,10 +25,8 @@ This project provides a research analytics environment with integrated AI suppor
 
 ## 🎯 **For Researchers**
 
-**Database Access**: Four-stage database system with prepared data from books-of-ukraine project:
+**Database Access**: Two-stage database system with prepared data from books-of-ukraine project:
 - `connect_books_db("main")` - Final analytical database (analysis-ready)  
-- `connect_books_db("stage_0")` - Core books data only
-- `connect_books_db("stage_1")` - Books + Ukrainian administrative data
 - `connect_books_db("stage_2")` - Books + admin + custom data
 
 **Quick Start**: Run `Rscript scripts/test-database-connection.R` to verify database access
