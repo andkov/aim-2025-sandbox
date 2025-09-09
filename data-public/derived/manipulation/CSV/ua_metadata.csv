@@ -1,0 +1,63 @@
+"source","variable_name","variable_label","variable_label_ua"
+"ellis-general","sex_head","Sex of hromada's head","Стать голови громади"
+"ellis-general","age_head","Age of hromada's head","Вік голови громади"
+"ellis-budget","income_own_2",NA,NA
+"ellis-uz","passengers_2021","Number of passengers arriving at hromada railway stations in 2021","Кількість пасажирів, які прибули на залізничні станції громади в 2021 році"
+"ellis-uz","train_station","Presence of train station in hromada","Наявність залізничної станції в громаді"
+"ellis-ua-admin","hromada_name",NA,"Назва територіальної громади"
+"ellis-ua-admin","hromada_code",NA,"Код КАТТОТГ громади (Кодифікатору адміністративно-територіальних одиниць та територій територіальних громад)"
+"ellis-ua-admin","type",NA,"Тип громади (залежно від типу центрального населеного пункту громади - сільська, селищна або міська)"
+"ellis-ua-admin","settlement_name",NA,"Назва населеного пункту"
+"ellis-ua-admin","settlement_code",NA,"Код КАТТОТГ населеного пункту (Кодифікатору адміністративно-територіальних одиниць та територій територіальних громад)"
+"ellis-ua-admin","settlement_type",NA,"Тип населеного пункту"
+"ellis-ua-admin","settlement_code_old",NA,"Код КОАТУУ населеного пункту (старий кодифікатор адміністративно-територіального устрою, який діяв до 2020 року)"
+"ellis-ua-admin","oblast_name",NA,"Назва області"
+"ellis-ua-admin","oblast_code",NA,"Код КАТТОТГ області (Кодифікатору адміністративно-територіальних одиниць та територій територіальних громад)"
+"ellis-ua-admin","raion_name",NA,"Назва району після адміністративно-територіальної реформи 2020 року"
+"ellis-ua-admin","raion_code",NA,"Код КАТОТГ раойну після адміністративно-територіальної реформи 2020 року"
+"ellis-ua-admin","region_en",NA,"Назва регіону (групи областей) англійською мовою"
+"ellis-ua-admin","regiob_ua",NA,"Назва регіону (групи областей) українською мовою"
+"ellis-ua-admin","oblast_center",NA,"Місто, яке є центром області, в якій знаходиться населений пункт/громада"
+"ellis-ua-admin","oblast_center_code",NA,"Код КАТОТГ міста, яке є центром області, в якій знаходиться населений пункт/громада"
+"ellis-ua-admin","rada_name",NA,"Назва місцевої ради (одиниця адміністративно-територіального устрою, що була ліквідована реформою 2020 року)"
+"ellis-ua-admin","rada_code",NA,"Код КОАТУУ місцевої ради (одиниця адміністративно-територіального устрою, що була ліквідована реформою 2020 року)"
+"ellis-ua-admin","budget_code",NA,"Код бюджету територіальної громади відповідно до Класифікатору бюджетних кодів Міністерства фінасів України"
+"growth-hromada","date",NA,"Дата початку першої виборчої кампанії в громаді"
+"ellis-geography","hromada_center_code",NA,"Код КАТОТГ населеного пункту, що є центром громади"
+"ellis-geography","hromada_center",NA,"Назва населеного пункту, що є центром громади"
+"ellis-geography","lat_center","Longitude of the settlement, which is the center of the community","Довгота населеного пункту, що є центром громади"
+"ellis-geography","lon_center","The latitude of the settlement, which is the center of the community","Широта населеного пункту, що є центром громади"
+"ellis-geography","travel_time","Travel time (in minutes) by car by road from the settlement that is the center of the community to the city that is the center of the respective region (based on OSM)","Час подорожі (в хв) на автомобілі по дорозі від населеного пункту, що є центром громади, до міста, що є центром відповідної області (на основі OSM)"
+"ellis-geography","n_settlement","The number of settlements included in the community","Кількість населених пунктів, що входять до складу громади"
+"ellis-geography","area","Area of the community in square km.","Площа громади в км кв."
+"ellis-demography","total_population_2022","Population of the community as of January 1, 2022","Кількість населення громади станом на 1.01.2022"
+"ellis-demography","urban_population_2022","The number of urban population of the community (cities and urban-type settlements) as of January 1, 2022","Кількість міського населення громади (міст та селищ міського типу) станом на 1.01.2022"
+"ellis-demography","urban_pct","The share of the urban population of the community from the total population of the community","Частка міського населення громади від усього населення громади"
+"ellis-osbb","sum_osbb_[YEAR]","The number of organizations of co-owners of apartment buildings in the community as of the corresponding year","Кількість організацій співвласників багатовартирних будинків (ОСББ) в громаді станом на відповідний рік"
+"ellis-zno","subject","Subject of EIE (External independent evaluation)","Предмет зовнішнього незалежного тестування (ЗНО)"
+"ellis-zno","mean_score","The average score in the subject for all graduates of the community who took the EIE (External independent evaluation)","Середній бал з предмету для всіх випускників громади, які складали ЗНО"
+"ellis-zno","n_didnt_pass","The number of participants of the EIE (External independent evaluation) in a certain subject in the community who did not pass the passing bar","Кількість учасників ЗНО з певного предмету в громаді, які не подолали прохідний барʼр"
+"ellis-zno","n","The total number of participants of the EIE (External independent evaluation) on a certain subject in the community","Загальна кількість учасників ЗНО з певного предмету в громаді"
+"ellis-zno","pct_didnt_pass","The share of those who did not overcome the entrance barrier, from all participants of the EIE (External independent evaluation) in the community","Частка тих, хто не подолав прохідний барʼєр, від усіх учасників ЗНО в громаді"
+"ellis-budget","year",NA,NA
+"ellis-budget","income_total",NA,NA
+"ellis-budget","income_transfert",NA,NA
+"ellis-budget","income_military",NA,NA
+"ellis-budget","income_pdfo",NA,NA
+"ellis-budget","income_unified_tax",NA,NA
+"ellis-budget","income_property_tax",NA,NA
+"ellis-budget","income_excise_duty",NA,NA
+"ellis-budget","income_own",NA,NA
+"ellis-budget","own_income_prop",NA,NA
+"ellis-budget","transfert_prop",NA,NA
+"ellis-budget","military_tax_prop",NA,NA
+"ellis-budget","pdfo_prop",NA,NA
+"ellis-budget","unified_tax_prop",NA,NA
+"ellis-budget","own_income_change",NA,NA
+"ellis-budget","own_prop_change",NA,NA
+"ellis-budget","own_income_change_net",NA,NA
+"ellis-budget","total_income_change_net",NA,NA
+"ellis-budget","total_income_change",NA,NA
+"ellis-community-competence","Youth_councils",NA,"Кількість молодіжних рад в громаді"
+"ellis-community-competence","Youth_centers",NA,"Кількість молодіжних центрів в громаді"
+"ellis-community-competence","Business_support_centers",NA,"Кількість Центрів підтримки підприємництва в громаді"

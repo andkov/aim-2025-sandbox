@@ -1,0 +1,3 @@
+"measure","measure_id","measure_description"
+"copy_count",1,"Total number of book copies printed"
+"title_count",2,"Number of unique book titles published"
