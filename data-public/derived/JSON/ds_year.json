@@ -1,0 +1,139 @@
+{
+  "metadata": {
+    "title": "Ukrainian Publishing Statistics by Year",
+    "description": "Annual data on book copy counts and title counts in Ukraine from 2005-2024",
+    "source": "Books of Ukraine database",
+    "last_updated": "2025-09-12",
+    "fields": {
+      "year": "Calendar year",
+      "copy_count": "Total number of book copies published (in thousands)",
+      "title_count": "Total number of unique book titles published"
+    }
+  },
+  "data": [
+    {
+      "year": 2005,
+      "copy_count": 54059.8,
+      "title_count": 15720
+    },
+    {
+      "year": 2006,
+      "copy_count": 54209.6,
+      "title_count": 15867
+    },
+    {
+      "year": 2007,
+      "copy_count": 56111.7,
+      "title_count": 17987
+    },
+    {
+      "year": 2008,
+      "copy_count": 58158.1,
+      "title_count": 24040
+    },
+    {
+      "year": 2009,
+      "copy_count": 48514.4,
+      "title_count": 22491
+    },
+    {
+      "year": 2010,
+      "copy_count": 45058.3,
+      "title_count": 22557
+    },
+    {
+      "year": 2011,
+      "copy_count": 46565.7,
+      "title_count": 22826
+    },
+    {
+      "year": 2012,
+      "copy_count": 62120.5,
+      "title_count": 26036
+    },
+    {
+      "year": 2013,
+      "copy_count": 69575.7,
+      "title_count": 26323
+    },
+    {
+      "year": 2014,
+      "copy_count": 55312,
+      "title_count": 22044
+    },
+    {
+      "year": 2015,
+      "copy_count": 36409.8,
+      "title_count": 19958
+    },
+    {
+      "year": 2016,
+      "copy_count": 48978.1,
+      "title_count": 21330
+    },
+    {
+      "year": 2017,
+      "copy_count": 45127.2,
+      "title_count": 22047
+    },
+    {
+      "year": 2018,
+      "copy_count": 47022.1,
+      "title_count": 22612
+    },
+    {
+      "year": 2019,
+      "copy_count": 61250.6,
+      "title_count": 24416
+    },
+    {
+      "year": 2020,
+      "copy_count": 41946.7,
+      "title_count": 18967
+    },
+    {
+      "year": 2021,
+      "copy_count": 44753.6,
+      "title_count": 21095
+    },
+    {
+      "year": 2022,
+      "copy_count": 11704.2,
+      "title_count": 9691
+    },
+    {
+      "year": 2023,
+      "copy_count": 24664,
+      "title_count": 15187
+    },
+    {
+      "year": 2024,
+      "copy_count": 34017.2,
+      "title_count": 14500
+    }
+  ],
+  "summary": {
+    "total_years": 20,
+    "year_range": "2005-2024",
+    "peak_copy_count": {
+      "year": 2013,
+      "value": 69575.7
+    },
+    "peak_title_count": {
+      "year": 2013,
+      "value": 26323
+    },
+    "notable_events": [
+      {
+        "year": 2014,
+        "event": "Start of conflict period - noticeable decline in publishing",
+        "impact": "Significant drop in copy counts"
+      },
+      {
+        "year": 2022,
+        "event": "Full-scale invasion impact",
+        "impact": "Dramatic decline to lowest levels in dataset"
+      }
+    ]
+  }
+}
