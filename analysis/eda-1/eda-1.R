@@ -116,6 +116,7 @@ for (nm in db_tables) {
 
 # ---- inspect-data -------------------------------------
 ds_language
+silent_mini_eda("ds_language")
 
 # ---- tweak-data-0 -------------------------------------
 
