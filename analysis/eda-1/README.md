@@ -22,7 +22,7 @@ httpgd::hgd_browse()   # open interactive viewer in browser
 
 Notes
 
-- The EDA script (`eda-3.R`) will automatically start `httpgd` only when it detects an interactive VS Code session. This prevents Quarto/CI from attempting to start a server during non-interactive renders.
+- The EDA script (`eda-1.R`) will automatically start `httpgd` only when it detects an interactive VS Code session. This prevents Quarto/CI from attempting to start a server during non-interactive renders.
 - For reproducible reports, the script still saves static PNGs via `ggsave()`; interactive plotting is strictly for development and exploration.
 - If installation fails on Windows because of compilation errors, make sure you install the Windows binary of `httpgd` from CRAN or install Rtools if needed.
 
