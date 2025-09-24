@@ -1,0 +1,143 @@
+# On the uses of LLMs in Reproducible Research Analytics
+
+
+## Slide 1. Today 
+- I'd like to tell you my story of adoption AI for my work as a data analyst in a government agency. You tools and skills define the problems you see, so knowing where i'm coming from will help you to be aware of my biases that I bring into this discussion. 
+
+## Slide 2.  About me
+I am a methodologist by training who works in reproducible research, meaning: extracting data from enterprise databases, organizing it for research, designing statistical tests of research hypotheses, summarizing the results, and communicating the findings to various levels of audiences. 
+If you can relate to any of these activities,  you are the audience I am speaking to. 
+
+## Slide 3. What makes Research Reproducible? 
+
+I do not want to be in the business of definitions, so let me operationalize what I mean by RR for the purposes of this discusson. RR (aspirationally) includes the following distinctive features: 
+- Research data warehousing  
+- Functional and auditable data pipelines  
+- Dynamic authoring of presentation layer documents  
+
+Is also often characterized by a Multi-stage logic (beyond what a single sql query can comfortably handle)
+
+## Slide 3a - Support-  Related concepts to RRA - Word cloud
+
+Literate Programming
+Reproducibility
+Scalability
+Collaboration
+Transparency
+Version Control
+Interoperability
+Continuous Improvement
+Data Quality
+Data Security
+Data Ethics
+Bias and Fairness
+Performance & Optimization
+Continuous Improvement
+
+
+## Slide 4. The fundamental problem of Research Analytics
+Reproducible Research calls on the practitioner to overcome a set of challenges.
+
+Today I would like to touch on the following subset:
+
+Data – What happens from the input to the graph?
+Scripts – How to organize and manage all this text? 
+People – Who does what and when? 
+
+Specifically, I am interested to understand how AI tools can help data analysts with these challenges.
+
+Managing text
+Managing thoughts
+Managing informational systems
+
+
+## Slide NN. Alberta AI Academy
+
+The Alberta AI Academy is a government-wide training program in applied AI skills. It is organized by Technology and Innovation (TI) and open to all government employees. The program uses modular training with three progressive levels: Level 1 (fundamentals for all users), Level 2 (advanced prototyping for technical users), and Level 3 (enterprise solutions for developers).
+**Level Progression**  
+- **Level 1:** Foundational usage: prompt structuring, evaluation discipline (RICECO / TRUST), multi‑modal transformation, applied tooling.  
+- **Level 2:** Prototype orchestration: agentic workflows (automated task delegation to AI agents), chaining, solution design.  
+- **Level 3:** Enterprise integration: production‑ready governed workflows, cross‑department scaling.
+
+**Curriculum Emphasis (observed)**  
+- Prompt engineering & structured context design  
+- Systematic response evaluation ([RICECO](https://www.youtube.com/watch?v=X7YjqKk-7Y0) prompting framework)  
+- Reusable prompt architectures ([PromptLab](https://promptlab.ca/) exercises)  
+- Deep + wide research acceleration ([Manus](https://manus.ai) + comparative models)  
+- Voice‑to‑structured transformation ([Voice Processor](https://voice.albertaaiacademy.com/), [Voice to Vision demo](https://www.youtube.com/watch?v=ku-BOEP8eAw))  
+- Graph / image / video extraction ([Image Processor](https://image.albertaaiacademy.com/), [DistillFrame](https://distillframe.com/))  
+- Workflow composition & reproducibility ([LogicStudio](https://logicstudio.aim.int.gov.ab.ca/))  
+- Front‑end generative scaffolding (Lovable, Gemini, [Hugging Face](https://huggingface.co))  
+- Secure knowledge mining ([Microsoft 365 Copilot](https://www.youtube.com/watch?v=eKpvBdiEEFI) / SharePoint agents)
+
+## Appendix A - Rough notes from the phone 
+
+
+Describe the audience
+
+Describe reproducible research.
+
+My history with GPT
+
+AIM summit in july 2025
+
+AAAL1 in september
+
+Describe my IDE setup 
+
+
+
+The problem
+
+Managing text
+
+Managing thoughts
+
+Managing informational systems
+
+
+
+
+Writing is hard. 
+
+The nature of talking to AI: typing or talkkng. Debates about what is better. Definitely different, because writing adds a cognitive filter. 
+
+
+
+Operationalizing Research Analytics. Distinctive features:
+
+Reproducible and auditable pipelines  
+Research data warehousing  
+Dynamic authoring of presentation layer documents  
+Multi-stage logic (beyond what a single sql query can comfortably handle)  
+
+
+AI adoption mindset: Augment, not replace.
+
+
+
+Everybody is unique, but each individual is similar to someone else.
+
+
+
+AI adoption plans should be tailored to position and customized to person. Custom made dress/suite but from shared pool. Atelier. 
+
+
+
+Instead, i will tell you what i don’t understand, don’t know
+
+
+
+Two perspective: 
+
+Macro: Research and Information management
+
+Micro: statistical modelling of data
+
+
+So what path will I be taking in adopting AI for my work? - Polyglot. 
+
+Strugure of the talk: first let me tell you what I do (reproducible research analytics) and then I'll try to describe how I will be adopting AI for my work.. 
+
+
+
