@@ -24,6 +24,7 @@ library(ggalluvial)
 library(janitor)  # tidy data
 library(testit)   # For asserting conditions meet expected patterns.
 
+
 # ---- httpgd (VS Code interactive plots) ------------------------------------
 # If the httpgd package is installed, try to start it so VS Code R extension
 # can display interactive plots. This is optional and wrapped in tryCatch so
@@ -115,8 +116,9 @@ for (nm in db_tables) {
 }
 
 # ---- inspect-data -------------------------------------
-ds_language
-silent_mini_eda("ds_language")
+ds_year %>% glimpse()
+source("./scripts/silent-mini-eda.R")
+silent_mini_eda("ds_year")
 
 # ---- tweak-data-0 -------------------------------------
 
@@ -127,10 +129,3 @@ silent_mini_eda("ds_language")
 # ---- inspect-data-2 -------------------------------------
 
 # ---- g1 -----------------------------------------------------
-# We would like to understand how  publishing books in ukraine very by language and time.  
-ds_language_prep <- silent_mini_eda("ds_language")
-
-ds_language_mini_eda <- silent_mini_eda("ds_language")
-ds_language_mini_eda %>% print()
-ds_language_mini_eda %>% 
-  write_mini_eda_json(script_dir = local_root, overwrite = TRUE)
