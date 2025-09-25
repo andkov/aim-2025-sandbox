@@ -12,6 +12,8 @@ Understand and describe regional difference (difference based on geography).
 
 Detect interesting patterns and relationships between the use of russian language in published book and the larger cultural, political, and economic context of Ukraine.
 
+A generic learning aim of the project is to demonstrate agentic capabilities of AI systems in the context of data analysis and visualization.
+
 ### Technical Aims
 
 A collection of reproducible scripted reports (e.g. .R, .qmd) that explore, analyze, and visualize the data, with clear documentation of methods and findings.
