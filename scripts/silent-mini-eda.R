@@ -17,7 +17,7 @@
 silent_mini_eda <- function(dataset_name, .env = .GlobalEnv, include_samples = TRUE, verbose = FALSE) {
   
   # Check if dataset exists
-  if (!exists(dataset_name, envir = .env)) {
+  if (!base::exists(dataset_name, envir = .env)) {
     warning(paste("Dataset", dataset_name, "not found in specified environment"))
     return(list(
       dataset_name = dataset_name,
@@ -27,7 +27,7 @@ silent_mini_eda <- function(dataset_name, .env = .GlobalEnv, include_samples = T
   }
   
   # Get the dataset
-  df <- get(dataset_name, envir = .env)
+  df <- base::get(dataset_name, envir = .env)
   
   if (!is.data.frame(df)) {
     warning(paste("Object", dataset_name, "is not a data frame"))
