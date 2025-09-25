@@ -1,13 +1,13 @@
 # AIM 2025 Sandbox - AI-Enhanced Research Analytics
 
-This project provides a research analytics environment with integrated AI support, memory systems, and reproducible analysis workflows. It combines data analysis capabilities with advanced AI assistance for social science research.
+This project provides a research analytics environment with integrated AI support, memory systems, and reproducible analysis workflows. It combines data analysis capabilities with advanced AI assistance for social science research. This project uses public data on Ukrainian publishing trends sourced from the [Books Champter of Ukraine](https://ukrbook.net/) and prepared for analysis by [github.com/rg-fides/books-of-ukraine](https://github.com/rg-fides/books-of-ukraine).
 
 ## 🧠 **AI-Enhanced Features**
 
-- **Project Memory System**: Persistent knowledge graph for research insights and decisions
-- **Context Management**: Dynamic AI context loading for specific analytical tasks  
-- **Copilot Integration**: GitHub Copilot optimized for research analytics workflows
-- **Multi-Modal Analysis**: Support for various data types and analytical approaches
+- **Project Memory System**: Separate memory tracks for human decisions and AI technical notes, with summary and detailed views
+- **Context Management**: Dynamic AI context loading for specific analytical tasks (i.e. flexible system prompt) 
+- **Copilot Integration**: GitHub Copilot optimized for research analytics workflows (e.g. tasks, extensions)
+
 
 ## 📊 **Research Analytics Capabilities**
 
@@ -18,12 +18,14 @@ This project provides a research analytics environment with integrated AI suppor
 
 ## � **Getting Started**
 
-1. **Setup**: Ensure R and required packages are installed
-2. **Data**: Place your data in `data-private/` directory
-3. **Analysis**: Use templates in `analysis/` directory  
-4. **AI Support**: Leverage the memory system and context management tools
+1. **Setup**: Install VS Code and activate Copilot
+2. **Fork Repository**: [github.com/rg-fides/books-of-ukraine](https://github.com/rg-fides/books-of-ukraine).
+3. **Environment**: Work with AI agent to install dependencies.
+4. **Explore project**: Request project briefing from Copilot.
 
 ## 🎯 **For Researchers**
+
+5. **Analysis**: Open ./analysis/eda-1.R and start exploring the data with AI assistance.
 
 **Database Access**: Two-stage database system with prepared data from books-of-ukraine project:
 - `connect_books_db("main")` - Final analytical database (analysis-ready)  
