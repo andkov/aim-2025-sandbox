@@ -81,6 +81,7 @@ When working with .R + qmd pairs (.R and .qmd scripts connect via read_chunk() f
 - when you see I develop a new section in .qmd file, create a corresponding chunk in the .R script with the same name to support it
 - when asked to design new report (ellis type or eda type) always consult the templates in ./scripts/templates/ 
 - When asked to start analyzing data, suggest ./analysis/eda-1/eda-1.R as the starting point and assume user will want to start testing R code in this script to better understand the data. 
+- when asked to visualize data prefer R and ggplot2, opt for python only with permission of the user
 
 ### Data
 - use the default database (books-of-ukraine.sqlite) unless otherwise specified
