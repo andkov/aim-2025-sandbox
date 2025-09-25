@@ -64,10 +64,8 @@ if (Test-Path "data-private/*") {
 Write-Host ""
 Write-Host "Available Databases:" -ForegroundColor Yellow
 $databases = @(
-    "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
-    "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite",
-    "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite", 
-    "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+    "data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+    "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
 )
 
 $dbNames = @("Main (analysis-ready)", "Stage 0 (core books)", "Stage 1 (+ admin data)", "Stage 2 (+ custom data)")
