@@ -1,0 +1,1 @@
+The folder ./analysis/exercise-1/ contains the first exercise for practicing data analysis using the Books of Ukraine dataset. This exercise is designed to help you get familiar with the data and perform some basic exploratory data analysis (EDA) using R and supported by AI tools. 
