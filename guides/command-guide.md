@@ -78,9 +78,9 @@ project_setup_check()
 ```
 ✅ R packages: All required packages installed
 ✅ Project structure: All directories present
-✅ Authentication: Google credentials valid
+✅ Database access: Local databases available
 ⚠️ Data directories: Missing some derived data
-💡 Run manipulation/0-ellis.R to generate missing data
+💡 Check scripts/verify-data-access.R for database status
 ```
 
 ## 🔧 Regular Commands (Weekly Use)

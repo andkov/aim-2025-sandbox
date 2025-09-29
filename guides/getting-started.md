@@ -32,16 +32,15 @@ Open R or RStudio and run:
 
 ```r
 install.packages(c(
-  "dplyr", "readr", "googlesheets4", "DBI", "RSQLite", "quarto", "stringr", "yaml", "knitr", "rmarkdown"
+  "dplyr", "readr", "DBI", "RSQLite", "quarto", "stringr", "yaml", "knitr", "rmarkdown"
 ))
 ```
 
 ---
 
-### 4. Add Required Files
+### 4. Data Access
 
-- Place your Google Sheets authentication file as `.secrets` in the project root (see `guides/setup-google-access.md` for help).
-## Here some instructions on how to do it:
+This repository includes pre-processed data files, so no external authentication is required. The analysis-ready databases are available in `data-private/derived/`.
 
 **Local VS Code settings:** Copy the example settings file to create your local workspace settings (this file is ignored by git):
 
@@ -49,54 +48,23 @@ install.packages(c(
 copy .vscode\settings.json.example .vscode\settings.json
 ```
 
-### Set Up Google Sheets Authentication
+### 5. Verify Setup
 
-To access project data in Google Sheets, you must authenticate your R environment. There are two supported methods:
+Test your environment setup:
 
-#### Method 1: Service Account (Recommended for automation and teams)
+```r
+# Check if required packages are installed
+source("scripts/check-setup.R")
 
-1. **Obtain the service account JSON file** from your project admin, or follow the guide in `guides/setup-google-access.md` to create your own.
-2. **Rename** the file to `google-service-account.json`.
-3. **Place** it in the project root directory:
-
-  ```
-  books-of-ukraine/
-  ├── google-service-account.json  ← Place here
-  ├── manipulation/
-  ├── scripts/
-  └── ...
-  ```
-4. **Share the Google Sheet** with the service account email (see the `client_email` field in your JSON file) as an Editor.
-5. **Test your setup** by running:
-  ```bash
-  Rscript scripts/test-service-account.R
-  ```
-  You should see a success message if authentication is working.
-
-**Security:** Never commit `google-service-account.json` to Git. This file contains private keys and is already in `.gitignore`.
-
-#### Method 2: One-Time Interactive Authentication (Quick start for individuals)
-
-1. Open R and run:
-  ```r
-  library(googlesheets4)
-  gs4_auth(cache = ".secrets", email = TRUE)
-  ```
-  This will open a browser window for you to sign in and grant access.
-2. A `.secrets` folder will be created in your project root. This stores your authentication token.
-3. All subsequent runs will use this cached token automatically.
-
-**Troubleshooting:**
-- If you get permission errors, make sure your Google account has access to the sheet.
-- For more help, see `guides/setup-google-access.md` for comprehensive authentication setup.
-
----
+# Test database connection
+source("scripts/test-database-connection.R")
+```
 
 **Also ensure the following directories exist:** `manipulation`, `analysis`, `scripts`, `ai`, `data-private`, `data-public` (these should be present if you cloned the repo).
 
 ---
 
-### 5. Project Overview
+### 6. Project Overview
 
 - **Purpose:** Investigate publishing trends in Ukraine since 2005, with a focus on regional differences and the use of Russian language in books.
 - **Structure:** Modular scripts, reproducible reports, and robust context/memory management for collaborative analysis.
@@ -142,7 +110,7 @@ These commands will:
 ## Need Help?
 - See `guides/command-reference.md` for all available commands and their usage
 - Review `README.md` for project background and structure
-- For authentication issues, see `guides/setup-google-access.md`
+- For database connection issues, run `Rscript scripts/verify-data-access.R`
 - For further assistance, contact the project maintainer
 
 ---

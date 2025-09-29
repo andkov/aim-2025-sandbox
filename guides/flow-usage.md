@@ -9,7 +9,7 @@ The `flow.R` script orchestrates the execution of all data processing, analysis,
 The pipeline is organized into 4 phases:
 
 ### Phase 1: Ellis Data Pipeline (Multi-Stage Processing)
-- **Stage 0**: `manipulation/0-ellis.R` - Core book data import from Google Sheets
+- **Stage 0**: `manipulation/0-ellis.R` - Core book data processing from local sources
 - **Stage 1**: `manipulation/1-ellis-ua-admin.R` - Ukrainian administrative data integration
 - **Stage 2**: `manipulation/2-ellis-extra.R` - **NEW** Modular custom data with bilingual support
 - **Final Stage**: `manipulation/last-ellis.R` - Analysis-ready tables + CSV exports
@@ -66,8 +66,8 @@ if(length(missing_files) > 0) {
 
 ### Essential packages (automatically loaded):
 - `magrittr` - For pipe operations
-- `googlesheets4` - For Google Sheets integration (in 0-ellis.R)
 - `dplyr`, `tidyr` - For data manipulation
+- `DBI`, `RSQLite` - For database connectivity
 - Standard R packages for analysis
 
 ### Optional packages (gracefully handled if missing):
@@ -76,16 +76,15 @@ if(length(missing_files) > 0) {
 - `OuhscMunge` - For SQL operations (skips SQL steps if missing)
 - `quarto` - For rendering .qmd files
 
-## Authentication Setup
+## Data Access
 
-Before running the pipeline, ensure Google Sheets authentication is configured:
+The repository includes pre-processed SQLite databases in `data-private/derived/manipulation/SQLite/`. No external authentication is required.
+
+To verify data access:
 
 ```r
-# Quick setup
-Rscript scripts/setup-google-auth.R
-
-# Or full validation
-Rscript scripts/check-setup.R
+# Test database connection
+source("scripts/test-database-connection.R")
 ```
 
 ## Customizing the Pipeline
@@ -106,10 +105,10 @@ To modify which scripts run:
 ## Troubleshooting
 
 ### Common Issues:
-1. **Missing authentication**: Run `scripts/setup-google-auth.R`
+1. **Database connection**: Run `scripts/test-database-connection.R` to verify
 2. **Missing packages**: Install required packages or they'll be skipped gracefully
 3. **File not found**: Check file paths in `ds_rail` are correct
-4. **Google Sheets access**: Ensure you have access to the data sheets
+4. **Data access**: Ensure the SQLite databases exist in `data-private/derived/`
 
 ### Logs:
 - Interactive sessions: Output shown in console
@@ -226,7 +225,7 @@ log_change("analysis/eda-1/eda-1.R", "Added regional comparison visualizations")
 log_change("analysis/Data-visualization/Data-visual.qmd", "Fixed axis labels and added legends")
 
 # After configuration changes
-log_change("config.yml", "Updated Google Sheets authentication settings")
+log_change("config.yml", "Updated database connection settings")
 ```
 
 #### What gets logged:

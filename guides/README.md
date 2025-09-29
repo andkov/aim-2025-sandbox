@@ -7,7 +7,6 @@ The `guides/` folder contains instructional materials reflecting the current sta
 ### Pipeline & Data Processing
 - **`getting-started.md`** - Initial setup and first steps
 - **`flow-usage.md`** - How to use the analysis flow system
-- **`setup-google-access.md`** - Google Sheets authentication setup
 - **`custom-data-guide.md`** - Complete guide for adding custom data sources to Ellis Pipeline
 
 ### Command References  
@@ -19,6 +18,6 @@ The `guides/` folder contains instructional materials reflecting the current sta
 
 ## 🎯 For New Users
 
-**Start here**: `getting-started.md` → `setup-google-access.md` → `flow-usage.md`
+**Start here**: `getting-started.md` → `flow-usage.md`
 
 **Adding custom data**: `custom-data-guide.md` provides step-by-step instructions for extending the pipeline with your own data sources.

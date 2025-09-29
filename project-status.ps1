@@ -4,8 +4,7 @@
 
 param(
     [switch]$Detailed,
-    [switch]$MemoryCheck,
-    [switch]$GoogleAuth
+    [switch]$MemoryCheck
 )
 
 Write-Host "BOOKS OF UKRAINE PROJECT STATUS CHECK" -ForegroundColor Magenta
@@ -64,11 +63,11 @@ if (Test-Path "data-private/*") {
 Write-Host ""
 Write-Host "Available Databases:" -ForegroundColor Yellow
 $databases = @(
-    "data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite",
-    "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+    "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+    "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
 )
 
-$dbNames = @("Main (analysis-ready)", "Stage 0 (core books)", "Stage 1 (+ admin data)", "Stage 2 (+ custom data)")
+$dbNames = @("Main (analysis-ready)", "Stage 2 (books + admin + extra)")
 
 for ($i = 0; $i -lt $databases.Length; $i++) {
     $db = $databases[$i]
@@ -147,28 +146,6 @@ if ($foundMemoryFiles.Count -gt 0) {
     }
 } else {
     Write-Host "WARNING: No memory files found" -ForegroundColor Yellow
-}
-
-# 6. Google authentication test (if requested)
-if ($GoogleAuth) {
-    Write-Host ""
-    Write-Host "Step 6: Google Authentication Test" -ForegroundColor Cyan
-    if (Test-Path "scripts/test-service-account.R") {
-        try {
-            Write-Host "Running Google authentication test..." -ForegroundColor Yellow
-            $testResult = Rscript scripts/test-service-account.R 2>&1
-            if ($LASTEXITCODE -eq 0) {
-                Write-Host "Google authentication test PASSED" -ForegroundColor Green
-            } else {
-                Write-Host "Google authentication test FAILED" -ForegroundColor Red
-                Write-Host "Output: $testResult" -ForegroundColor Gray
-            }
-        } catch {
-            Write-Host "Could not run authentication test" -ForegroundColor Red
-        }
-    } else {
-        Write-Host "Google authentication test script not found" -ForegroundColor Yellow
-    }
 }
 
 Write-Host ""

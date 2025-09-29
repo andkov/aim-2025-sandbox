@@ -28,7 +28,7 @@ This new command provides:
 
 ### `project_setup_check()`
 **Comprehensive environment validation with detailed diagnostics**
-- Validates R packages, project structure, authentication, data directories
+- Validates R packages, project structure, database access, data directories
 - Provides detailed error messages and resolution suggestions
 - Returns setup status object when `return_status = TRUE`
 
