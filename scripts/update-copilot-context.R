@@ -379,132 +379,49 @@ check_context_size <- function() {
   }
 }
 
-# ==============================================================================
-# CACHE MANIFEST MANAGEMENT
+# ============================================================================== 
+# CACHE MANIFEST MANAGEMENT (DECOMMISSIONED AUTOMATION)
 # ==============================================================================
 
-# Function to check and update CACHE-manifest based on actual data outputs
-check_cache_manifest <- function(update_if_needed = TRUE) {
-  cache_manifest_path <- "./ai/CACHE-manifest-0.md"
-  
-  message("🔍 Analyzing data outputs for CACHE manifest...")
-  
-  # Check if CACHE manifest exists and get its timestamp
-  manifest_exists <- file.exists(cache_manifest_path)
-  manifest_timestamp <- if (manifest_exists) file.mtime(cache_manifest_path) else NULL
-  
-  message("📋 CACHE Manifest Status:")
-  if (manifest_exists) {
-    message("   ✅ File exists: ", cache_manifest_path)
-    message("   📅 Last updated: ", format(manifest_timestamp, "%Y-%m-%d %H:%M:%S"))
-  } else {
-    message("   ❌ File missing: ", cache_manifest_path)
-  }
-  
-  # Check for common data directories
-  data_paths <- c(
-    "data-private/derived",
-    "data-private/derived/manipulation", 
-    "data-public/derived"
-  )
-  
-  existing_data <- c()
-  for (path in data_paths) {
-    if (dir.exists(path)) {
-      files <- list.files(path, pattern = "\\.(rds|csv|xlsx)$", recursive = TRUE, full.names = TRUE)
-      existing_data <- c(existing_data, files)
-    }
-  }
-  
-  message("\n📊 Data File Analysis:")
-  message("   📁 Total data files found: ", length(existing_data))
-  
-  if (length(existing_data) == 0) {
-    message("   ❌ No data files found. Run data processing scripts first.")
-    return(list(status = "no_data", datasets = 0, manifest_current = FALSE))
-  }
-  
-  # Check which files are newer than manifest
-  new_files <- c()
-  if (manifest_exists) {
-    for (file in existing_data) {
-      if (file.mtime(file) > manifest_timestamp) {
-        new_files <- c(new_files, file)
-      }
-    }
-  }
-  
-  # Determine if update is needed
-  needs_update <- !manifest_exists || length(new_files) > 0
-  
-  if (!needs_update) {
-    message("\n🎉 CACHE manifest is up-to-date! No action needed.")
-    return(list(status = "current", datasets = length(existing_data), manifest_current = TRUE))
-  }
-  
-  if (!update_if_needed) {
-    message("\n💡 CACHE manifest needs updating but update_if_needed = FALSE")
-    message("    Run check_cache_manifest(update_if_needed = TRUE) to update")
-    return(list(status = "needs_update", datasets = length(existing_data), manifest_current = FALSE))
-  }
-  
-  message("\n🔄 Updating CACHE manifest...")
-  
-  # Create manifest content
-  manifest_content <- c(
-    "# CACHE Manifest",
-    "",
-    "This document serves as a comprehensive guide to the data structure and organization of the CACHE for this project.",
-    "",
-    "---",
-    "",
-    "## CACHE Overview",
-    "",
-    paste("**Last Updated**: ", Sys.Date(), " (", length(existing_data), " files)"),
-    "",
-    "## Data Files",
-    ""
-  )
-  
-  # Group files by directory
-  for (path in data_paths) {
-    if (dir.exists(path)) {
-      files <- list.files(path, pattern = "\\.(rds|csv|xlsx)$", recursive = TRUE, full.names = TRUE)
-      if (length(files) > 0) {
-        manifest_content <- c(manifest_content,
-          paste("### Files in", path),
-          ""
-        )
-        
-        for (file in files) {
-          file_size <- round(file.size(file) / 1024, 1)
-          file_date <- format(file.mtime(file), "%Y-%m-%d")
-          rel_path <- gsub(paste0("^", path, "/"), "", file)
-          
-          manifest_content <- c(manifest_content,
-            paste("- **", basename(file), "** (", file_size, " KB, ", file_date, ")")
-          )
-        }
-        manifest_content <- c(manifest_content, "")
-      }
-    }
-  }
-  
-  manifest_content <- c(manifest_content,
-    "",
-    "---",
-    "",
-    "## Data Transformation Details"
-  )
-  
-  # Write the manifest
-  writeLines(manifest_content, cache_manifest_path)
-  
-  message("✅ Updated CACHE-manifest.md")
-  message("📊 Total files documented: ", length(existing_data))
-  
-  return(list(status = "updated", datasets = length(existing_data), manifest_current = TRUE))
+# New canonical manifest location (human-authored)
+cache_manifest_canonical_path <- function() {
+  file.path("data-public", "metadata", "CACHE-MANIFEST.md")
 }
+
+# Backwards compatible stub (old signature). Never auto-writes now.
+check_cache_manifest <- function(update_if_needed = TRUE) {
+  path <- cache_manifest_canonical_path()
+  exists <- file.exists(path)
+  message("📋 CACHE Manifest (manual mode)")
+  if (exists) {
+    message("   ✅ Present at: ", path)
+    message("   📅 Last modified: ", format(file.mtime(path), "%Y-%m-%d %H:%M:%S"))
+    if (isTRUE(update_if_needed)) {
+      message("   ℹ️ Automation disabled: no update attempted.")
+    }
+    return(list(status = "present", path = path, manifest_current = TRUE))
+  } else {
+    warning("   ❌ Missing expected manifest at: ", path,
+            "\n   Create or copy a human-authored manifest before proceeding.")
+    return(list(status = "missing", path = path, manifest_current = FALSE))
+  }
+}
+
+# Deprecated writer: inform user and do nothing.
+update_cache_manifest <- function(...) {
+  path <- cache_manifest_canonical_path()
+  message("� update_cache_manifest() is deprecated. Manual maintenance only.")
+  if (file.exists(path)) {
+    message("✅ Existing manifest detected at: ", path)
+  } else {
+    warning("❌ No manifest found at expected path: ", path,
+            "\nCreate it manually (see README or data documentation template).")
+  }
+  invisible(path)
+}
+
+# Alias retained for any legacy calls
+build_cache_manifest <- function(...) update_cache_manifest(...)
 
 # ==============================================================================
 # PROJECT ANALYSIS & COMMAND OVERVIEW SYSTEM  
@@ -663,7 +580,7 @@ analyze_project_status <- function() {
   cat("├─ remove_all_dynamic_instructions() │ Reset/clear all dynamic context\n")
   cat("├─ validate_context()        │ Check if loaded context files are current\n")
   cat("├─ check_context_size()      │ Monitor context file size and performance impact\n")
-  cat("└─ check_cache_manifest()    │ Check CACHE manifest status and update if needed\n")
+  cat("└─ check_cache_manifest()    │ Verify manual CACHE manifest presence (no auto-update)\n")
   
   cat("\n📊 PROJECT ANALYSIS:\n")
   cat("├─ analyze_project_status()  │ THIS COMMAND - Complete project analysis\n")

@@ -95,23 +95,15 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Task ID**: `check-cache-manifest`
 - **Trigger Prompt**: "check cache manifest"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_cache_manifest()"`
-- **Description**: Checks and updates the CACHE manifest based on 0-ellis outputs. Shows dataset status and updates manifest if needed.
-- **When to Use**: After running 0-ellis, before data analysis, or when manifest is out of date.
+- **Description**: Verifies presence and timestamp of the manually maintained manifest (`data-public/metadata/CACHE-MANIFEST.md`). Does not modify or generate content.
+- **When to Use**: Before sharing data, ensuring documentation exists, or during audits.
 - **Access Method**: Tasks: Run Task → "Check Cache Manifest"
-- **Expected Output**: Updated `data-public/metadata/CACHE-manifest.md` and terminal status
-- **Status**: ✅ Active
+- **Expected Output**: Status message indicating present/missing and last modified time
+- **Status**: ✅ Active (read-only)
 
-### 8. Update Cache Manifest
-- **Task ID**: `update-cache-manifest`
-- **Trigger Prompt**: "update cache manifest"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); update_cache_manifest()"`
-- **Description**: Forces update of the CACHE manifest and logbook with current 0-ellis outputs.
-- **When to Use**: After major data changes, before sharing data, or for audit trail.
-- **Access Method**: Tasks: Run Task → "Update Cache Manifest"
-- **Expected Output**: Updated `data-public/metadata/CACHE-manifest.md` and `ai/logbook.md`
-- **Status**: ✅ Active
+<!-- Task 8 (Update Cache Manifest) removed on 2025-09-29: automation deprecated; manual manifest only. -->
 
-### 9. Analyze Project Status
+### 8. Analyze Project Status
 - **Task ID**: `analyze-project-status`
 - **Trigger Prompt**: "analyze project status"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); analyze_project_status()"`
@@ -121,7 +113,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with 7-section analysis and recommendations
 - **Status**: ✅ Active
 
-### 10. Project Setup Check
+### 9. Project Setup Check
 - **Task ID**: `project-setup-check`
 - **Trigger Prompt**: "project setup check"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); project_setup_check()"`
@@ -131,7 +123,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with setup status and diagnostics
 - **Status**: ✅ Active
 
-### 11. Quick Setup Check
+### 10. Quick Setup Check
 - **Task ID**: `quick-setup-check`
 - **Trigger Prompt**: "quick setup check"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); quick_setup_check()"`
@@ -141,7 +133,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: TRUE/FALSE in terminal
 - **Status**: ✅ Active
 
-### 12. Safe Run Script
+### 11. Safe Run Script
 - **Task ID**: `safe-run-script`
 - **Trigger Prompt**: "safe run script"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); safe_run_script('file.R')"`
@@ -151,7 +143,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Script output with setup validation
 - **Status**: ✅ Active
 
-### 13. Check Flow Currency
+### 12. Check Flow Currency
 - **Task ID**: `check-flow-currency`
 - **Trigger Prompt**: "check flow currency"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_flow_currency()"`
@@ -161,7 +153,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with flow.R status
 - **Status**: ✅ Active
 
-### 14. Analyze and Update Flow
+### 13. Analyze and Update Flow
 - **Task ID**: `analyze-and-update-flow`
 - **Trigger Prompt**: "analyze and update flow"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); analyze_and_update_flow()"`
@@ -171,7 +163,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Updated flow.R and terminal output
 - **Status**: ✅ Active
 
-### 15. Check Flow Status
+### 14. Check Flow Status
 - **Task ID**: `check-flow-status`
 - **Trigger Prompt**: "check flow status"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_flow_status()"`
@@ -181,7 +173,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: TRUE/FALSE in terminal
 - **Status**: ✅ Active
 
-### 16. AI Memory Check
+### 15. AI Memory Check
 - **Task ID**: `ai-memory-check`
 - **Trigger Prompt**: "ai memory check"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); ai_memory_check()"`
@@ -191,7 +183,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with memory analysis
 - **Status**: ✅ Active
 
-### 17. Memory Status
+### 16. Memory Status
 - **Task ID**: `memory-status`
 - **Trigger Prompt**: "memory status"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); memory_status()"`
@@ -201,7 +193,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with memory status
 - **Status**: ✅ Active
 
-### 18. Generate Project Briefing
+### 17. Generate Project Briefing
 - **Task ID**: `generate-project-briefing`
 - **Trigger Prompt**: "generate project briefing"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); generate_project_briefing()"`
@@ -211,7 +203,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with project briefing
 - **Status**: ✅ Active
 
-### 19. Update Project Memory
+### 18. Update Project Memory
 - **Task ID**: `update-project-memory`
 - **Trigger Prompt**: "update project memory"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); update_project_memory()"`
@@ -221,7 +213,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with memory update status
 - **Status**: ✅ Active
 
-### 20. Log File Change
+### 19. Log File Change
 - **Task ID**: `log-file-change`
 - **Trigger Prompt**: "log file change"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); log_file_change('path/to/file.ext', 'description')"`
@@ -231,7 +223,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Updated `ai/logbook.md` with file change entry
 - **Status**: ✅ Active
 
-### 21. Log Change (Short Alias)
+### 20. Log Change (Short Alias)
 - **Task ID**: `log-change`
 - **Trigger Prompt**: "log change"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); log_change('file.ext', 'description')"`
@@ -241,7 +233,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Updated `ai/logbook.md` with file change entry
 - **Status**: ✅ Active
 
-### 22. Get Command Help
+### 21. Get Command Help
 - **Task ID**: `get-command-help`
 - **Trigger Prompt**: "get command help"
 - **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); get_command_help()"`
@@ -251,7 +243,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Terminal output with command help
 - **Status**: ✅ Active
 
-### 24. Ellis Pipeline - Complete (All Stages)
+### 22. Ellis Pipeline - Complete (All Stages)
 - **Task ID**: `Ellis Pipeline - Complete (All Stages)`
 - **Trigger Prompt**: "run complete ellis pipeline" or "execute all ellis stages"
 - **Command**: Sequential execution of all Ellis stages with error handling
@@ -274,7 +266,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Status**: ✅ Active
 - **Group**: build (default task)
 
-### 25. Ellis Stage 0 - Core Foundation
+### 23. Ellis Stage 0 - Core Foundation
 - **Task ID**: `Ellis Stage 0 - Core Foundation`
 - **Trigger Prompt**: "run ellis stage 0" or "core foundation"
 - **Command**: `Rscript manipulation/0-ellis.R`
@@ -285,7 +277,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Created**: August 21, 2025
 - **Status**: ✅ Active
 
-### 26. Ellis Stage 1 - Administrative Integration  
+### 24. Ellis Stage 1 - Administrative Integration  
 - **Task ID**: `Ellis Stage 1 - Administrative Integration`
 - **Trigger Prompt**: "run ellis stage 1" or "administrative integration"
 - **Command**: `Rscript manipulation/1-ellis-ua-admin.R`
@@ -296,7 +288,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Created**: August 21, 2025
 - **Status**: ✅ Active
 
-### 27. Ellis Stage 2 - Custom Data Integration
+### 25. Ellis Stage 2 - Custom Data Integration
 - **Task ID**: `Ellis Stage 2 - Custom Data Integration`
 - **Trigger Prompt**: "run ellis stage 2" or "custom data integration"
 - **Command**: `Rscript manipulation/2-ellis-extra.R`
@@ -307,7 +299,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Created**: August 21, 2025
 - **Status**: ✅ Active
 
-### 28. Ellis Final - Analytical Optimization
+### 26. Ellis Final - Analytical Optimization
 - **Task ID**: `Ellis Final - Analytical Optimization`
 - **Trigger Prompt**: "run ellis final" or "analytical optimization"
 - **Command**: `Rscript manipulation/last-ellis.R`

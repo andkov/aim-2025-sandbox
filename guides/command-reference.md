@@ -98,20 +98,18 @@ This new command provides:
 - Prevents context bloat that could impact AI performance
 - Provides optimization recommendations
 
-### `check_cache_manifest(update_if_needed = TRUE)`
-**🆕 Check CACHE manifest status and update if needed**
-- Analyzes all 0-ellis script outputs and their freshness
-- Compares dataset timestamps with manifest timestamp
-- Shows detailed status of each dataset (new/existing/missing)
-- Only updates manifest when actually needed
-- Returns detailed status object with dataset information
+### `check_cache_manifest()`
+**Check presence of the manual CACHE manifest (automation deprecated)**
+- Verifies that `data-public/metadata/CACHE-MANIFEST.md` exists
+- Reports last modified timestamp
+- Does NOT auto-generate or modify any files
+- Returns simple status list (present/missing)
 
-### `update_cache_manifest()`
-**🆕 Force update CACHE manifest with current 0-ellis outputs**
-- Convenience wrapper that always updates the manifest
-- Automatically updates logbook with changes
-- Documents new datasets and file information
-- Creates comprehensive manifest from actual data files
+### `update_cache_manifest()` (deprecated)
+**Deprecated: no longer writes or generates manifest**
+- Retained only for backward compatibility
+- Emits informative message and exits
+- Use manual edit of `data-public/metadata/CACHE-MANIFEST.md`
 
 ---
 
@@ -236,7 +234,7 @@ log_file_change("analysis/eda-1/eda-1.qmd", "Added regional analysis visualizati
 1. `quick_setup_check()` - Verify environment
 2. `add_data_context()` - Load data-focused context
 3. `safe_run_script('manipulation/0-ellis.R')` - Process data
-4. `check_cache_manifest()` - 🆕 Verify data manifest is current
+4. `check_cache_manifest()` - Verify manual data manifest presence
 5. `check_flow_currency()` - 🆕 Ensure workflow structure is current
 
 ### 🔄 **Workflow Management**
