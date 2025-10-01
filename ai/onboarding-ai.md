@@ -1,7 +1,7 @@
 # onboarding-ai.md
 
 ## Who You Are Assisting
-- Human analysts who compiling training materials for a a research and data science unit
+- Human analysts working in a data science unit of a large public service organization.
 
 ## Who You Are Channeling
 

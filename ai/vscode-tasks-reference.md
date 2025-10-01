@@ -4,6 +4,17 @@
 
 > **Purpose**: Track all VS Code tasks, their triggers, and functionality for team reference and maintenance.
 
+## 🚨 Maintenance Needed
+
+**Action Items** (added 2025-10-01):
+- [ ] Update "Last Updated" date from August 8 → October 1, 2025
+- [ ] Verify all 26 task statuses are current  
+- [ ] Add version info and related files section
+- [ ] Establish routine maintenance schedule
+- [ ] Consider integration with project memory system
+
+---
+
 ## Overview
 
 This document maintains a comprehensive list of all custom VS Code tasks created for the Books of Ukraine project. Each task is designed to automate common workflows and reduce friction in the development process.
@@ -15,357 +26,141 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 
 ## Available Tasks
 
-### 0. Comprehensive Project Diagnostics
-- **Task ID**: `comprehensive-project-diagnostics`
-- **Trigger Prompt**: "comprehensive project diagnostics" or "environment diagnostics"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); comprehensive_project_diagnostics()"`
-- **Description**: Full environment, dependency, and workflow readiness check for new devices. Checks R version, Quarto CLI, Google Sheets authentication, required files/directories, and R packages.
-- **When to Use**: New device setup, troubleshooting, or before running the full workflow.
-- **Access Method**: Tasks: Run Task → "Comprehensive Project Diagnostics"
-- **Expected Output**: Terminal output with diagnostics and readiness summary
+### 1. Render EDA-1 Report (Quarto)
+- **Task ID**: `Render EDA-1 Report (Quarto)`
+- **Command**: `quarto render analysis/eda-1/eda-1.qmd --to html`
+- **Description**: Renders the EDA-1 analysis report to HTML using Quarto
+- **When to Use**: Generate final report from EDA-1 analysis
+- **Access Method**: Tasks: Run Task → "Render EDA-1 Report (Quarto)"
+- **Expected Output**: HTML report in analysis/eda-1/ directory
 - **Status**: ✅ Active
 
-### 1. Load Core Context
-- **Task ID**: `load-core-context`
-- **Trigger Prompt**: "load core context" or "refresh core context"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); add_core_context()"`
-- **Description**: Automatically loads essential AI context components (onboarding-ai, mission, method) into the copilot instructions dynamic section
-- **When to Use**: 
-  - Starting a new work session
-  - After context has been cleared or corrupted
-  - When AI needs project background refreshed
-- **Access Method**: 
-  - Ctrl+Shift+P → "Tasks: Run Task" → "Load Core Context"
-  - Or via Command Palette: "Tasks: Run Task"
-- **Expected Output**: Updates `.github/copilot-instructions.md` with core context
-- **Created**: August 8, 2025
+### 2. Check Quarto Availability
+- **Task ID**: `Check Quarto Availability`
+- **Command**: `quarto --version`
+- **Description**: Checks if Quarto CLI is installed and available
+- **When to Use**: Environment setup verification, troubleshooting Quarto issues
+- **Access Method**: Tasks: Run Task → "Check Quarto Availability"
+- **Expected Output**: Quarto version number
 - **Status**: ✅ Active
 
-### 2. Add Data Context
-- **Task ID**: `add-data-context`
-- **Trigger Prompt**: "add data context"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); add_data_context()"`
-- **Description**: Loads data-focused context (CACHE manifest, pipeline) for data processing and manipulation tasks.
-- **When to Use**: Data work, pipeline review, or after data changes.
-- **Access Method**: Tasks: Run Task → "Add Data Context"
-- **Expected Output**: Updates `.github/copilot-instructions.md` with data context
+### 3. Memory System Status Check
+- **Task ID**: `Memory System Status Check`
+- **Command**: PowerShell script to check ai/*.md file timestamps
+- **Description**: Shows status and last modification times of memory system files in ai/ directory
+- **When to Use**: Memory system maintenance, checking for recent updates
+- **Access Method**: Tasks: Run Task → "Memory System Status Check"
+- **Expected Output**: List of ai/*.md files with modification timestamps
 - **Status**: ✅ Active
 
-### 3. Add Compass Context
-- **Task ID**: `add-compass-context`
-- **Trigger Prompt**: "add compass context"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); add_compass_context()"`
-- **Description**: Loads compass-specific context (logbook) for analytical context and decision history.
-- **When to Use**: Reviewing project decisions, analytical approaches.
-- **Access Method**: Tasks: Run Task → "Add Compass Context"
-- **Expected Output**: Updates `.github/copilot-instructions.md` with compass context
+### 4. Load Memory Functions (R)
+- **Task ID**: `Load Memory Functions (R)`
+- **Command**: `Rscript scripts/wrappers/run-ai-memory-check.R`
+- **Description**: Loads AI memory functions from R wrapper script
+- **When to Use**: Initialize memory system, AI context management
+- **Access Method**: Tasks: Run Task → "Load Memory Functions (R)"
+- **Expected Output**: Memory functions loaded confirmation
 - **Status**: ✅ Active
 
-### 4. Add Full Context
-- **Task ID**: `add-full-context`
-- **Trigger Prompt**: "add full context"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); add_full_context()"`
-- **Description**: Loads comprehensive project context for complex tasks (onboarding, mission, method, glossary, pipeline).
-- **When to Use**: Deep analysis, onboarding, or troubleshooting.
-- **Access Method**: Tasks: Run Task → "Add Full Context"
-- **Expected Output**: Updates `.github/copilot-instructions.md` with full context
+### 5. Project Files Overview
+- **Task ID**: `Project Files Overview`
+- **Command**: PowerShell tree command with full file listing
+- **Description**: Complete project structure including all files
+- **When to Use**: Project overview, file location, comprehensive structure review
+- **Access Method**: Tasks: Run Task → "Project Files Overview"
+- **Expected Output**: Complete tree structure with files
 - **Status**: ✅ Active
 
-### 5. Remove All Dynamic Instructions
-- **Task ID**: `remove-all-dynamic-instructions`
-- **Trigger Prompt**: "remove all dynamic instructions"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); remove_all_dynamic_instructions()"`
-- **Description**: Clears all dynamic content from copilot instructions for a clean slate.
-- **When to Use**: Resetting context, troubleshooting, or before loading new context.
-- **Access Method**: Tasks: Run Task → "Remove All Dynamic Instructions"
-- **Expected Output**: `.github/copilot-instructions.md` is cleared of dynamic content
+### 6. Project Files Overview (Directories Only)
+- **Task ID**: `Project Files Overview (Directories Only)`
+- **Command**: PowerShell tree command for directories only
+- **Description**: Project directory structure without individual files
+- **When to Use**: Quick project layout overview, directory structure review
+- **Access Method**: Tasks: Run Task → "Project Files Overview (Directories Only)"
+- **Expected Output**: Directory-only tree structure
 - **Status**: ✅ Active
 
-### 6. Context Refresh
-- **Task ID**: `context-refresh`
-- **Trigger Prompt**: "context refresh" or "scan context"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); context_refresh()"`
-- **Description**: Complete status scan with setup validation and context options. Shows current context, setup status, and available actions.
-- **When to Use**: Project overview, context troubleshooting, or before major work.
-- **Access Method**: Tasks: Run Task → "Context Refresh"
-- **Expected Output**: Terminal output with context status and options
+### 7. Project Status Check
+- **Task ID**: `Project Status Check`
+- **Command**: `powershell -File project-status.ps1 -Detailed`
+- **Description**: Runs detailed project status check using PowerShell script
+- **When to Use**: Comprehensive project health check, environment validation
+- **Access Method**: Tasks: Run Task → "Project Status Check"
+- **Expected Output**: Detailed project status report
 - **Status**: ✅ Active
 
-### 7. Check Cache Manifest
-- **Task ID**: `check-cache-manifest`
-- **Trigger Prompt**: "check cache manifest"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_cache_manifest()"`
-- **Description**: Verifies presence and timestamp of the manually maintained manifest (`data-public/metadata/CACHE-MANIFEST.md`). Does not modify or generate content.
-- **When to Use**: Before sharing data, ensuring documentation exists, or during audits.
-- **Access Method**: Tasks: Run Task → "Check Cache Manifest"
-- **Expected Output**: Status message indicating present/missing and last modified time
-- **Status**: ✅ Active (read-only)
-
-<!-- Task 8 (Update Cache Manifest) removed on 2025-09-29: automation deprecated; manual manifest only. -->
-
-### 8. Analyze Project Status
-- **Task ID**: `analyze-project-status`
-- **Trigger Prompt**: "analyze project status"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); analyze_project_status()"`
-- **Description**: Complete project health check: setup, context, memory, data, and recommendations.
-- **When to Use**: Onboarding, troubleshooting, or regular project review.
-- **Access Method**: Tasks: Run Task → "Analyze Project Status"
-- **Expected Output**: Terminal output with 7-section analysis and recommendations
+### 8. Setup Node.js Environment
+- **Task ID**: `Setup Node.js Environment`
+- **Command**: `powershell -File setup-nodejs.ps1`
+- **Description**: Initializes Node.js environment setup
+- **When to Use**: First-time setup, Node.js environment configuration
+- **Access Method**: Tasks: Run Task → "Setup Node.js Environment"
+- **Expected Output**: Node.js setup completion status
 - **Status**: ✅ Active
 
-### 9. Project Setup Check
-- **Task ID**: `project-setup-check`
-- **Trigger Prompt**: "project setup check"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); project_setup_check()"`
-- **Description**: Comprehensive environment validation with detailed diagnostics.
-- **When to Use**: After setup, before running scripts, or troubleshooting errors.
-- **Access Method**: Tasks: Run Task → "Project Setup Check"
-- **Expected Output**: Terminal output with setup status and diagnostics
+### 9. Add Core Context (R)
+- **Task ID**: `Add Core Context (R)`
+- **Command**: `Rscript scripts/wrappers/run-add-core-context.R`
+- **Description**: Loads core AI context using R wrapper script
+- **When to Use**: AI context initialization, core context refresh
+- **Access Method**: Tasks: Run Task → "Add Core Context (R)"
+- **Expected Output**: Core context loaded confirmation
 - **Status**: ✅ Active
 
-### 10. Quick Setup Check
-- **Task ID**: `quick-setup-check`
-- **Trigger Prompt**: "quick setup check"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); quick_setup_check()"`
-- **Description**: Fast setup status check (returns TRUE/FALSE). Lightweight validation for script automation.
-- **When to Use**: Before running scripts, in automation, or for quick validation.
-- **Access Method**: Tasks: Run Task → "Quick Setup Check"
-- **Expected Output**: TRUE/FALSE in terminal
+### 10. Run flow.R
+- **Task ID**: `Run flow.R`
+- **Command**: `Rscript flow.R`
+- **Description**: Executes the main project flow script
+- **When to Use**: Run main project workflow, execute analysis pipeline
+- **Access Method**: Tasks: Run Task → "Run flow.R"
+- **Expected Output**: Flow execution results and status
 - **Status**: ✅ Active
 
-### 11. Safe Run Script
-- **Task ID**: `safe-run-script`
-- **Trigger Prompt**: "safe run script"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); safe_run_script('file.R')"`
-- **Description**: Executes scripts with automatic setup validation. Prevents failures due to environment issues.
-- **When to Use**: For new team members, before running any script, or in automation.
-- **Access Method**: Tasks: Run Task → "Safe Run Script"
-- **Expected Output**: Script output with setup validation
-- **Status**: ✅ Active
-
-### 12. Check Flow Currency
-- **Task ID**: `check-flow-currency`
-- **Trigger Prompt**: "check flow currency"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_flow_currency()"`
-- **Description**: Checks if flow.R is current vs project scripts. Identifies scripts not referenced in flow.R.
-- **When to Use**: After adding new scripts, before running flow.R, or workflow review.
-- **Access Method**: Tasks: Run Task → "Check Flow Currency"
-- **Expected Output**: Terminal output with flow.R status
-- **Status**: ✅ Active
-
-### 13. Analyze and Update Flow
-- **Task ID**: `analyze-and-update-flow`
-- **Trigger Prompt**: "analyze and update flow"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); analyze_and_update_flow()"`
-- **Description**: Intelligently analyzes and updates flow.R structure, creates backup, and organizes scripts by phase.
-- **When to Use**: After major script changes, for workflow automation, or before sharing project.
-- **Access Method**: Tasks: Run Task → "Analyze and Update Flow"
-- **Expected Output**: Updated flow.R and terminal output
-- **Status**: ✅ Active
-
-### 14. Check Flow Status
-- **Task ID**: `check-flow-status`
-- **Trigger Prompt**: "check flow status"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); check_flow_status()"`
-- **Description**: Quick flow.R status check. Returns boolean status for script automation.
-- **When to Use**: Automated workflow validation, before running flow.R
-- **Access Method**: Tasks: Run Task → "Check Flow Status"
-- **Expected Output**: TRUE/FALSE in terminal
-- **Status**: ✅ Active
-
-### 15. AI Memory Check
-- **Task ID**: `ai-memory-check`
-- **Trigger Prompt**: "ai memory check"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); ai_memory_check()"`
-- **Description**: Main AI memory function with intent detection. Reviews project memory and offers to capture intentions.
-- **When to Use**: Project planning, intent review, or after major decisions.
-- **Access Method**: Tasks: Run Task → "AI Memory Check"
-- **Expected Output**: Terminal output with memory analysis
-- **Status**: ✅ Active
-
-### 16. Memory Status
-- **Task ID**: `memory-status`
-- **Trigger Prompt**: "memory status"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); memory_status()"`
-- **Description**: Quick project memory status overview. Shows memory age, size, and content overview.
-- **When to Use**: Memory system check, before/after updates.
-- **Access Method**: Tasks: Run Task → "Memory Status"
-- **Expected Output**: Terminal output with memory status
-- **Status**: ✅ Active
-
-### 17. Generate Project Briefing
-- **Task ID**: `generate-project-briefing`
-- **Trigger Prompt**: "generate project briefing"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); generate_project_briefing()"`
-- **Description**: Comprehensive project briefing generation. Useful for handoffs and status reports.
-- **When to Use**: Project handoff, reporting, or onboarding.
-- **Access Method**: Tasks: Run Task → "Generate Project Briefing"
-- **Expected Output**: Terminal output with project briefing
-- **Status**: ✅ Active
-
-### 18. Update Project Memory
-- **Task ID**: `update-project-memory`
-- **Trigger Prompt**: "update project memory"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); update_project_memory()"`
-- **Description**: Manual project memory updates. For capturing specific decisions or changes.
-- **When to Use**: After major decisions, project planning, or memory corrections.
-- **Access Method**: Tasks: Run Task → "Update Project Memory"
-- **Expected Output**: Terminal output with memory update status
-- **Status**: ✅ Active
-
-### 19. Log File Change
-- **Task ID**: `log-file-change`
-- **Trigger Prompt**: "log file change"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); log_file_change('path/to/file.ext', 'description')"`
-- **Description**: Log file modifications to project logbook. Records file, user, and change description.
-- **When to Use**: After significant file changes, before commits, or for audit trail.
-- **Access Method**: Tasks: Run Task → "Log File Change"
-- **Expected Output**: Updated `ai/logbook.md` with file change entry
-- **Status**: ✅ Active
-
-### 20. Log Change (Short Alias)
-- **Task ID**: `log-change`
-- **Trigger Prompt**: "log change"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); log_change('file.ext', 'description')"`
-- **Description**: Short alias for log_file_change(). Same functionality, less typing.
-- **When to Use**: Frequent file change logging, quick documentation.
-- **Access Method**: Tasks: Run Task → "Log Change"
-- **Expected Output**: Updated `ai/logbook.md` with file change entry
-- **Status**: ✅ Active
-
-### 21. Get Command Help
-- **Task ID**: `get-command-help`
-- **Trigger Prompt**: "get command help"
-- **Command**: `Rscript -e "source('scripts/update-copilot-context.R'); get_command_help()"`
-- **Description**: Detailed help for specific commands. Shows usage, purpose, and when to use.
-- **When to Use**: Learning new commands, troubleshooting, or onboarding.
-- **Access Method**: Tasks: Run Task → "Get Command Help"
-- **Expected Output**: Terminal output with command help
-- **Status**: ✅ Active
-
-### 22. Ellis Pipeline - Complete (All Stages)
-- **Task ID**: `Ellis Pipeline - Complete (All Stages)`
-- **Trigger Prompt**: "run complete ellis pipeline" or "execute all ellis stages"
-- **Command**: Sequential execution of all Ellis stages with error handling
-- **Description**: Runs the complete Ellis data processing pipeline (Stages 0, 1, 2, and Final) in sequence. Includes error handling and stops at first failure stage.
-- **When to Use**: Full data refresh, initial setup, or comprehensive data update
-- **Access Method**: Ctrl+Shift+P → "Tasks: Run Task" → "Ellis Pipeline - Complete (All Stages)"
-- **Expected Output**: 
-  - Stage 0: books-of-ukraine-0.sqlite (Core Foundation)
-  - Stage 1: books-of-ukraine-1.sqlite (+ Administrative Data)  
-  - Stage 2: books-of-ukraine-2.sqlite (+ Custom Data)
-  - Final: books-of-ukraine.sqlite (Analysis-ready)
-- **Pipeline Flow**:
-  ```
-  📊 Stage 0: Core Foundation → 
-  🏛️ Stage 1: Administrative Integration → 
-  🔧 Stage 2: Custom Data Integration → 
-  🎯 Final Stage: Analytical Optimization
-  ```
-- **Created**: August 21, 2025
-- **Status**: ✅ Active
-- **Group**: build (default task)
-
-### 23. Ellis Stage 0 - Core Foundation
-- **Task ID**: `Ellis Stage 0 - Core Foundation`
-- **Trigger Prompt**: "run ellis stage 0" or "core foundation"
-- **Command**: `Rscript manipulation/0-ellis.R`
-- **Description**: Runs Stage 0 of Ellis pipeline - imports core book publishing data from Google Sheets and creates foundational star schema
-- **When to Use**: Data refresh, testing core data import, or debugging Stage 0
-- **Access Method**: Tasks: Run Task → "Ellis Stage 0 - Core Foundation"
-- **Expected Output**: books-of-ukraine-0.sqlite with fact/dimension tables
-- **Created**: August 21, 2025
-- **Status**: ✅ Active
-
-### 24. Ellis Stage 1 - Administrative Integration  
-- **Task ID**: `Ellis Stage 1 - Administrative Integration`
-- **Trigger Prompt**: "run ellis stage 1" or "administrative integration"
-- **Command**: `Rscript manipulation/1-ellis-ua-admin.R`
-- **Description**: Runs Stage 1 - adds Ukrainian administrative data (oblasts, hromadas) to core book data
-- **When to Use**: Territorial analysis preparation, after Stage 0, or debugging administrative data
-- **Access Method**: Tasks: Run Task → "Ellis Stage 1 - Administrative Integration"
-- **Expected Output**: books-of-ukraine-1.sqlite with territorial data added
-- **Created**: August 21, 2025
-- **Status**: ✅ Active
-
-### 25. Ellis Stage 2 - Custom Data Integration
-- **Task ID**: `Ellis Stage 2 - Custom Data Integration`
-- **Trigger Prompt**: "run ellis stage 2" or "custom data integration"
-- **Command**: `Rscript manipulation/2-ellis-extra.R`
-- **Description**: Runs Stage 2 - integrates user-contributed custom data sources with bilingual support
-- **When to Use**: Adding custom data, testing bilingual processing, or after updating extra-data-config.R
-- **Access Method**: Tasks: Run Task → "Ellis Stage 2 - Custom Data Integration"
-- **Expected Output**: books-of-ukraine-2.sqlite with custom ds_* tables
-- **Created**: August 21, 2025
-- **Status**: ✅ Active
-
-### 26. Ellis Final - Analytical Optimization
-- **Task ID**: `Ellis Final - Analytical Optimization`
-- **Trigger Prompt**: "run ellis final" or "analytical optimization"
-- **Command**: `Rscript manipulation/last-ellis.R`
-- **Description**: Runs Final stage - creates analysis-ready database optimized for research workflows
-- **When to Use**: Final step after all stages, before analysis, or creating analysis database
-- **Access Method**: Tasks: Run Task → "Ellis Final - Analytical Optimization"
-- **Expected Output**: books-of-ukraine.sqlite (final analysis database)
-- **Created**: August 21, 2025
+### 11. Test Silent Mini-EDA System
+- **Task ID**: `Test Silent Mini-EDA System`
+- **Command**: R script to test mini-EDA functionality
+- **Description**: Tests the silent mini-EDA system with mtcars dataset
+- **When to Use**: Verify EDA system functionality, system testing
+- **Access Method**: Tasks: Run Task → "Test Silent Mini-EDA System"
+- **Expected Output**: System operational confirmation
 - **Status**: ✅ Active
 
 ## Task Categories
 
-### Context Management Tasks
-- **Load Core Context**: Essential AI context loading
-- **Add Data Context**: Data-focused context for processing tasks
-- **Add Compass Context**: Analytical context and decision history
-- **Add Full Context**: Comprehensive project context
-- **Remove All Dynamic Instructions**: Context cleanup
-- **Context Refresh**: Complete status scan with options
+### Report Generation Tasks
+- **Render EDA-3 Report (Quarto)**: HTML report generation from Quarto documents
 
-### Data Processing Tasks  
-- **Ellis Pipeline - Complete**: Full 4-stage data processing pipeline
-- **Ellis Stage 0**: Core foundation data import
-- **Ellis Stage 1**: Administrative data integration
-- **Ellis Stage 2**: Custom/user-contributed data integration
-- **Ellis Final**: Analytical database optimization
+### Environment & Setup Tasks
+- **Check Quarto Availability**: Quarto CLI validation
+- **Setup Node.js Environment**: Node.js environment initialization  
+- **Project Status Check**: Comprehensive project health check
 
-### Memory & Project Management Tasks
-- **AI Memory Check**: Intent detection and memory review
-- **Memory Status**: Quick memory system overview
-- **Generate Project Briefing**: Comprehensive status reports
-- **Update Project Memory**: Manual memory updates
-- **Log File Change**: File modification tracking
+### Memory & Context Management Tasks
+- **Memory System Status Check**: AI memory system file monitoring
+- **Load Memory Functions (R)**: AI memory system initialization
+- **Add Core Context (R)**: Core AI context loading
 
-### Setup & Diagnostics Tasks
-- **Comprehensive Project Diagnostics**: Full environment validation
-- **Project Setup Check**: Environment and dependency check  
-- **Quick Setup Check**: Fast TRUE/FALSE setup validation
-- **Safe Run Script**: Script execution with validation
-- **Analyze Project Status**: Complete project health check
+### Project Overview Tasks
+- **Project Files Overview**: Complete project structure display
+- **Project Files Overview (Directories Only)**: Directory-only structure display
 
-### Workflow Management Tasks
-- **Check Flow Currency**: Validate flow.R vs project scripts
-- **Analyze and Update Flow**: Intelligent flow.R reconstruction
-- **Check Flow Status**: Quick flow.R validation
-- **Create Next Ellis**: Generate new ellis-phase scripts
-
-### Future Task Categories (Planned)
-- **Analysis Tasks**: Quick execution of analysis scripts
-- **Report Generation Tasks**: Automated report building
-- **Quality Assurance Tasks**: Enhanced validation and testing
+### Analysis & Workflow Tasks
+- **Run flow.R**: Main project workflow execution
+- **Test Silent Mini-EDA System**: EDA system functionality testing
 
 ## Usage Patterns
 
 ### Common Workflow Triggers
-- **"load core context"** → Execute Load Core Context task
-- **"refresh context"** → Execute Load Core Context task  
-- **"setup context"** → Execute Load Core Context task
-- **"run complete ellis pipeline"** → Execute Ellis Pipeline - Complete task
-- **"run ellis stage 0"** → Execute Ellis Stage 0 task
-- **"run ellis stage 1"** → Execute Ellis Stage 1 task
-- **"run ellis stage 2"** → Execute Ellis Stage 2 task
-- **"run ellis final"** → Execute Ellis Final task
-- **"context refresh"** → Execute Context Refresh task
-- **"check setup"** → Execute Project Setup Check task
-- **"ai memory check"** → Execute AI Memory Check task
+- **"render eda report"** → Execute Render EDA-3 Report (Quarto) task
+- **"check quarto"** → Execute Check Quarto Availability task
+- **"memory status"** → Execute Memory System Status Check task
+- **"load memory"** → Execute Load Memory Functions (R) task
+- **"project overview"** → Execute Project Files Overview task
+- **"check setup"** → Execute Project Status Check task
+- **"setup node"** → Execute Setup Node.js Environment task
+- **"add context"** → Execute Add Core Context (R) task
+- **"run flow"** → Execute Run flow.R task
+- **"test eda"** → Execute Test Silent Mini-EDA System task
 
 ### Task Naming Convention
 - Tasks use kebab-case naming: `task-name-description`
@@ -435,9 +230,10 @@ Tasks are designed to respond to natural language prompts that team members migh
 
 ---
 
-**Last Updated**: August 8, 2025  
+**Last Updated**: October 1, 2025  
 **Maintained By**: Project Team  
 **Related Files**: 
-- `.vscode/tasks.json` - Task definitions
-- `scripts/update-copilot-context.R` - Context management functions
-- `ai/project-memory.md` - Project decision history
+- `.vscode/tasks.json` - Task definitions (11 active tasks)
+- `scripts/wrappers/` - R wrapper scripts for task execution
+- `project-status.ps1` - Project health check script
+- `setup-nodejs.ps1` - Node.js environment setup script
