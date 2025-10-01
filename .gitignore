@@ -73,8 +73,8 @@ Desktop.ini
 .DS_Store
 
 # ---- Visual Studio Code (text editor) ----------------------
-.vscode/
-!.vscode/settings.json
+.vscode/*
+.vscode/settings.json
 !.vscode/launch.json
 
 # ---- Locks ----------------------
@@ -141,3 +141,6 @@ analysis/briefing-note-1/take-1-*
 analysis/briefing-note-1/notebook-1.md
 analysis/briefing-note-1/*
 !analysis/exercise-1/exercise-1.png
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/settings.json.example
