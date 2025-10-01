@@ -79,3 +79,8 @@ What this approach demands is a new literacy for analysts: not just technical sk
 • Seeing AI not as a shortcut, but as a dialectical partner.
 
 ![Dialects of Data Expression](images/dialects.jpg)
+
+Knowledge is a  conversation, emergent from discussion between humans. We employ AI as a polyglot to translate across dialects of data expression, but humans remain the conductors of meaning, flawed but ultimattely accountable for the ethical and epistemic integrity of the research enterprise.
+
+
+![Dialectic Epistemology for Research Analytics](images/dialectic-epistemology.png)
