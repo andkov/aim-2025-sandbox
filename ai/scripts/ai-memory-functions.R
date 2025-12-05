@@ -1,16 +1,34 @@
-# AI Memory Functions (Streamlined) - Books of Ukraine Project
-# Simplified, essential functions for human-friendly memory management
-# Optimized for VS Code workflow and reduced cognitive load
-# Adapted from mature sda-ceis-impact implementation
+# Portable AI Memory Management Functions
+# Exportable logic for memory system functionality  
+# Version: 1.0.0 - Designed for storage/logic separation
+# Storage: project-specific memory files (memory-ai.md, memory-human.md, etc.)
+# Logic: portable functions that work across projects
+
+# === CONFIGURATION READING ===
+
+# Source shared configuration utilities
+if (file.exists("ai/scripts/ai-config-utils.R")) {
+  source("ai/scripts/ai-config-utils.R")
+} else if (file.exists("./ai/scripts/ai-config-utils.R")) {
+  source("./ai/scripts/ai-config-utils.R")
+}
 
 #' Quick Memory Status Check
 #' 
 #' Lightweight function to show current project memory state
 memory_status <- function(project_root = ".") {
   
-  memory_ai_file <- file.path(project_root, "ai", "memory-ai.md")
-  memory_human_file <- file.path(project_root, "ai", "memory-human.md")
-  memory_hub_file <- file.path(project_root, "ai", "memory-hub.md")
+  # Use configuration-based file paths
+  if (exists("get_ai_file_path")) {
+    memory_ai_file <- get_ai_file_path("memory-ai", project_root)
+    memory_human_file <- get_ai_file_path("memory-human", project_root)  
+    memory_hub_file <- get_ai_file_path("memory-hub", project_root)
+  } else {
+    # Fallback to legacy paths
+    memory_ai_file <- file.path(project_root, "ai", "memory", "memory-ai.md")
+    memory_human_file <- file.path(project_root, "ai", "memory", "memory-human.md")
+    memory_hub_file <- file.path(project_root, "ai", "memory", "memory-hub.md")
+  }
   
   cat("📊 **Memory System Status** (Books of Ukraine)\n")
   

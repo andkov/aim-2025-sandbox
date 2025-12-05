@@ -1,6 +1,18 @@
 default:
   project_name: "aim-2025-sandbox"
   
+  # AI Support Configuration
+  ai_support:
+    personas_dir: "./ai/personas/"
+    memory_dir: "./ai/memory/"
+    project_dir: "./ai/project/"
+    default_persona: "default"
+    context_components:
+      - "mission"
+      - "method"
+      - "glossary"
+    memory_enabled: true
+  
   # Database Configuration - Access to prepared data from books-of-ukraine
   # Available databases:
   # - main: Final analytical database (optimized for analysts)
@@ -12,7 +24,7 @@ default:
 
   # Basic project configuration
   directories:
-    cache: "./ai/"
+    ai: "./ai/"
     data_private: "./data-private/"
     data_public: "./data-public/"
     analysis: "./analysis/"

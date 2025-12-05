@@ -7,7 +7,7 @@ suppressPackageStartupMessages({
 })
 
 if (!exists("add_core_context")) {
-  stop("add_core_context() not found. Check that scripts/ai-memory-functions.R defines it and that working dir is project root.")
+  stop("add_core_context() not found. Check that ai/scripts/ai-memory-functions.R defines it and that working dir is project root.")
 }
 
 cat("Running add_core_context()...\n")

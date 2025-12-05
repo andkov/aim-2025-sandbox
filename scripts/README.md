@@ -19,33 +19,16 @@ Small wrapper scripts that bridge VS Code tasks with main project scripts.
 
 ## Key Scripts
 
-### `update-copilot-context.R`
-**🆕 Enhanced with CACHE Manifest Management**
+All AI-related scripts have been moved to `ai/scripts/` for better organization.
 
-This script now includes comprehensive project management functions:
+### Core Analysis Scripts
+- `common-functions.R` - Shared utility functions for data analysis
+- `silent-mini-eda.R` - Lightweight exploratory data analysis
+- `verify-data-access.R` - Database connection verification
 
-#### Context Management Functions:
-- `add_to_instructions()` - Load dynamic context into Copilot
-- `context_refresh()` - Complete project status scan
-- `analyze_project_status()` - Comprehensive project analysis
-
-#### 🆕 New CACHE Manifest Functions:
-- `check_cache_manifest()` - Check and update data manifest as needed
-- `update_cache_manifest()` - Force update manifest with current datasets
-
-#### Project Setup Functions:
-- `project_setup_check()` - Full environment validation
-- `safe_run_script()` - Execute scripts with setup validation
-
-#### AI Memory Functions:
-- `ai_memory_check()` - Project memory and intent detection
-- `memory_status()` - Quick memory overview
-
-#### 📝 File Change Tracking Functions:
-- `log_file_change()` - Log file modifications to project logbook
-- `log_change()` - Short alias for file change logging
-
-**Usage**: Source this script to access all project management functions.
+### Specialized Scripts
+- `check-setup.R` - Environment and dependency validation  
+- `test-database-connection.R` - Database connectivity testing
 
 ### Other Important Scripts
 - `google-auth-helper.R` - Google Sheets authentication

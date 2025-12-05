@@ -12,7 +12,7 @@ These wrappers exist to:
 ## Current Wrappers
 
 ### `run-ai-memory-check.R`
-- **Purpose**: Execute `ai_memory_check()` from `scripts/ai-memory-functions.R`
+- **Purpose**: Execute `ai_memory_check()` from `ai/scripts/ai-memory-functions.R`
 - **Used by**: VS Code task "Load Memory Functions (R)"
 - **Why needed**: Avoids PowerShell `-e` argument quoting issues on Windows
 
