@@ -28,7 +28,7 @@ This document explores publishing trends in Ukraine since 2005, focusing on:
 -   **Regional differences**: Geographic variations in publishing activity
 -   **Genre patterns**: Subject matter evolution across time and regions
 
-Following the **FIDES framework**, we develop analytical insights iteratively in the companion `.R` script before publishing them here for broader consumption.
+Following the **FIDES framework**, we develop analytical insights in the companion `.R` script before publishing them here (in the QMD document) for broader consumption.
 
 # **Definition of Terms**
 

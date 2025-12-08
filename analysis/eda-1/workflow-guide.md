@@ -4,13 +4,13 @@
 
 This directory implements a **dual-file workflow** for exploratory data analysis following the FIDES framework:
 
-- **`eda-3.R`**: Analytical development layer (experimentation & refinement)
-- **`eda-3.qmd`**: Publication layer (polished reporting & documentation)
+- **`eda-1.R`**: Analytical development layer (experimentation & refinement)
+- **`eda-1.qmd`**: Publication layer (polished reporting & documentation)
 
 ## 🔄 Development Workflow
 
 ### 1. **Develop in R Script First**
-Work interactively in `eda-3.R`:
+Work interactively in `eda-1.R`:
 ```r
 # Add new analysis chunks with clear labels
 # ---- g2 ----------------------------------------
@@ -48,10 +48,11 @@ When you're satisfied with a chunk in the R script:
 ## 📁 Directory Structure
 
 ```
-analysis/eda-3/
-├── eda-3.R           # Development & experimentation layer
-├── eda-3.qmd         # Publication & reporting layer  
+analysis/eda-1/
+├── eda-1.R           # Development & experimentation layer
+├── eda-1.qmd         # Publication & reporting layer  
 ├── workflow-guide.md # This guide
+├── style-guide.md    # Conventions for reporting & graphing
 ├── data-local/       # Local outputs and intermediate files
 └── prints/           # Saved plots and figures
 ```
@@ -101,16 +102,16 @@ db <- connect_books_db("main")
 ## 🚀 Getting Started
 
 1. **Open both files** in VS Code side-by-side
-2. **Start in eda-3.R** - run the data loading chunks
+2. **Start in eda-1.R** - run the data loading chunks
 3. **Develop your first graph** in the `g1` section
 4. **Test interactively** until you're satisfied
-5. **Add corresponding chunk** to eda-3.qmd
+5. **Add corresponding chunk** to eda-1.qmd
 6. **Render the Quarto report** to see the published result
 
 ## 📊 Example Development Cycle
 
 ```r
-# In eda-3.R - develop new analysis
+# In eda-1.R - develop new analysis
 # ---- g2 ----------------------------------------
 # Regional publishing inequality
 top_regions <- ds_geography %>%

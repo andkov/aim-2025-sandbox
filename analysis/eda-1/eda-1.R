@@ -1,3 +1,4 @@
+# nolint start
 rm(list = ls(all.names = TRUE)) # Clear the memory of variables from previous run. This is not called by knitr, because it's above the first chunk.
 cat("\014") # Clear the console
 # verify root location
@@ -23,8 +24,6 @@ library(emmeans)   # for interpreting model results
 library(ggalluvial)
 library(janitor)  # tidy data
 library(testit)   # For asserting conditions meet expected patterns.
-
-
 # ---- httpgd (VS Code interactive plots) ------------------------------------
 # If the httpgd package is installed, try to start it so VS Code R extension
 # can display interactive plots. This is optional and wrapped in tryCatch so
@@ -64,8 +63,6 @@ if (!fs::dir_exists(data_private_derived)) {fs::dir_create(data_private_derived)
 
 prints_folder <- paste0(local_root, "prints/")
 if (!fs::dir_exists(prints_folder)) {fs::dir_create(prints_folder)}
-
-
 # ---- declare-functions -------------------------------------------------------
 # base::source(paste0(local_root,"local-functions.R")) # project-level
 
@@ -129,3 +126,8 @@ silent_mini_eda("ds_year")
 # ---- inspect-data-2 -------------------------------------
 
 # ---- g1 -----------------------------------------------------
+# Let's see the trends of annual publication over time.  Let's see th total number of books published in Ukraine each year. 
+
+
+
+# nolint end
