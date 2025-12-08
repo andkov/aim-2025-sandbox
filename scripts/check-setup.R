@@ -112,9 +112,9 @@ cat("\n4. DATA DIRECTORIES\n")
 cat("-------------------\n")
 data_dirs <- c(
   "data-private/derived",
-  "data-private/derived/manipulation",
-  "data-private/derived/manipulation/SQLite",
-  "data-private/derived/manipulation/CSV"
+  "data-public/derived",
+  "data-public/derived/manipulation",
+  "data-public/derived/manipulation/SQLite"
 )
 
 for(dir in data_dirs) {
@@ -123,19 +123,43 @@ for(dir in data_dirs) {
 
 cat("\n5. DATABASE AVAILABILITY\n")
 cat("------------------------\n")
-databases <- c(
-  "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
-  "data-private/derived/manipulation/SQLite/books-of-ukraine-0.sqlite",
-  "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite",
-  "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
-)
 
-db_names <- c(
-  "Main database (analysis-ready)",
-  "Stage 0 database (core books)",
-  "Stage 1 database (+ admin data)",  
-  "Stage 2 database (+ custom data)"
-)
+# Try to read database paths from config.yml if available
+config_databases <- c()
+config_db_names <- c()
+
+tryCatch({
+  if (requireNamespace("config", quietly = TRUE)) {
+    cfg <- config::get()
+    if (!is.null(cfg$database$books_of_ukraine)) {
+      config_databases <- c(
+        cfg$database$books_of_ukraine$main,
+        cfg$database$books_of_ukraine$stage_2
+      )
+      config_db_names <- c(
+        "Main database (from config.yml)",
+        "Stage 2 database (from config.yml)"
+      )
+    }
+  }
+}, error = function(e) {
+  # Ignore config reading errors
+})
+
+# Fallback to hardcoded paths if config reading fails
+if (length(config_databases) == 0) {
+  databases <- c(
+    "data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+    "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+  )
+  db_names <- c(
+    "Main database (analysis-ready)",
+    "Stage 2 database (comprehensive)"
+  )
+} else {
+  databases <- config_databases
+  db_names <- config_db_names
+}
 
 for(i in seq_along(databases)) {
   if(file.exists(databases[i])) {
