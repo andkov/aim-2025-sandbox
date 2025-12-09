@@ -12,9 +12,9 @@ Purpose: A compact, join-ready dataset with one row per oblast capturing populat
   - Spatial polygons (optional): terhromad_fin.geojson
   - **Field metadata**: metadata_data_public.xlsx ("main" sheet)
 - Outputs/locations:
-  - SQLite: data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite (table: ua_oblasts_aggregated)
-  - CSV: data-private/derived/manipulation/CSV/ua_oblasts_aggregated.csv
-  - Metadata: data-private/derived/manipulation/CSV/ua_metadata.csv
+  - SQLite: data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite (table: ua_oblasts_aggregated)
+  - CSV: data-public/derived/manipulation/CSV/ua_oblasts_aggregated.csv
+  - Metadata: data-public/derived/manipulation/CSV/ua_metadata.csv
 
 ## Data Sources and Field Descriptions
 
@@ -91,7 +91,7 @@ Ukrainian → English oblast name mappings verified against KSE admin hierarchy:
 ### Read metadata for field reference
 ```r
 library(DBI)
-con <- dbConnect(RSQLite::SQLite(), "data-private/derived/manipulation/SQLite/books-of-ukraine-1.sqlite")
+con <- dbConnect(RSQLite::SQLite(), "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite")
 metadata <- dbReadTable(con, "ua_metadata")
 ua_oblasts <- dbReadTable(con, "ua_oblasts_aggregated")
 dbDisconnect(con)

@@ -31,9 +31,14 @@
 ## Reproducibility Standards
 
 **Database Management**: SQLite databases with staged processing:
-- Stage 0: Core BCU data
+- Stage 0: Core publishing data from Book Chamber of Ukraine (BCU)
 - Stage 1: BCU + Administrative context  
-- Main: Analysis-ready long-format tables
+- Stage 2: BCU + Admin  + Custom Data  (Comprehensive)
+- Main: Analysis-ready (Curated))
+
+Note: This project provides only stage 2 and main databases. 
+
+**Database Location**: Unlike the parent `books-of-ukraine` repository, databases are stored in `data-public/derived/manipulation/SQLite/` to ensure immediate availability after repository cloning. Access via `connect_books_db()` function in `scripts/common-functions.R`.
 
 **Scripted Analysis**: R + Quarto workflow with:
 - `.R` scripts for iterative development and chunk creation

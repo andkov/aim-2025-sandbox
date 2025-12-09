@@ -21,10 +21,29 @@ if (file.exists("./scripts/common-functions.R")) {
 cat("\n📋 DATABASE FILE CHECK\n")
 cat("----------------------\n")
 
-databases <- list(
-  "Main (analysis-ready)" = "data-private/derived/manipulation/SQLite/books-of-ukraine.sqlite",
-  "Stage 2 (comprehensive)" = "data-private/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
-)
+# Load configuration to get correct paths
+config <- NULL
+if (file.exists("config.yml")) {
+  tryCatch({
+    config <- config::get(file = "config.yml")
+  }, error = function(e) {
+    cat("⚠️  Could not load config.yml, using fallback paths\n")
+  })
+}
+
+# Get database paths from config or use fallbacks
+if (!is.null(config) && !is.null(config$database$books_of_ukraine)) {
+  databases <- list(
+    "Main (analysis-ready)" = config$database$books_of_ukraine$main,
+    "Stage 2 (comprehensive)" = config$database$books_of_ukraine$stage_2
+  )
+} else {
+  # Fallback to data-public (correct location for aim-2025-sandbox)
+  databases <- list(
+    "Main (analysis-ready)" = "data-public/derived/manipulation/SQLite/books-of-ukraine.sqlite",
+    "Stage 2 (comprehensive)" = "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite"
+  )
+}
 
 db_status <- list()
 
