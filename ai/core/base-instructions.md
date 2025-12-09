@@ -65,12 +65,48 @@ data <- dbGetQuery(db, "SELECT * FROM ds_year")
 }
 ```
 
-**Exceptions**
-- Single-line commands: No braces needed
-- Code in `.R` files executed via `source()`: No braces needed
-- Documentation examples showing structure: Braces optional but recommended
+**When This Rule Applies (MANDATORY TRIGGERS)**
 
-**Application**
-- Always use braces when suggesting code for immediate terminal execution
-- Use braces in README/guide examples that users will copy-paste
-- Include braces in interactive examples and quick-start sections
+✅ **ALWAYS use curly braces when:**
+- Code has 2+ lines AND will be pasted into terminal/console
+- Code includes `source()` followed by function calls
+- Code connects to database (`connect_books_db()`) and queries data
+- Providing "try this" or "quick exploration" examples
+- Writing code snippets in chat responses for users to execute
+- Creating examples in README files, getting-started guides, or quick-start sections
+- Any interactive example meant for copy-paste execution
+
+❌ **Exceptions (NO curly braces needed):**
+- Single-line commands: `Rscript scripts/test.R`
+- Code in `.R` files that will be executed via `source()` or `Rscript`
+- Pure documentation examples showing function signatures (not for execution)
+- Code blocks explicitly labeled as "file content" or "script structure"
+
+**Pre-Response Validation Checklist**
+
+Before providing R code in any response, verify:
+1. ☑️ Is this code multi-line (2+ statements)?
+2. ☑️ Will the user paste this into a terminal/console?
+3. ☑️ Does it include sequential operations (source + function calls, connect + query)?
+
+If ANY answer is YES → **Wrap in curly braces `{}`**
+
+**Common Violation Patterns to Avoid**
+
+```r
+# ❌ WRONG - Missing braces in "try this" suggestion:
+"Try this quick exploration:
+source('scripts/common-functions.R')
+db <- connect_books_db('main')
+data <- dbGetQuery(db, 'SELECT * FROM ds_year')"
+
+# ✅ CORRECT - Braces included:
+"Try this quick exploration:
+{
+  source('scripts/common-functions.R')
+  db <- connect_books_db('main')
+  data <- dbGetQuery(db, 'SELECT * FROM ds_year')
+  print(data)
+  dbDisconnect(db)
+}"
+```
