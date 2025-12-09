@@ -30,7 +30,7 @@
 - **Process Documentation**: Status checking, context management, and workflow guides
 
 ### ✅ **Automation & Workflow Systems**
-- **Status Monitoring**: project-status.ps1 providing comprehensive project health checks
+- **Status Monitoring**: R-based functions providing comprehensive project health checks
 - **Memory Management**: Structured protocols for human-AI collaboration
 - **Context Loading**: Dynamic content management for task-specific AI assistance
 - **Version Control**: Git integration with change detection and milestone tracking

@@ -145,7 +145,7 @@ When working with .R + qmd pairs (.R and .qmd scripts connect via read_chunk() f
 #### Required Approach for Database Access:
 ```r
 # ✅ CORRECT: Use configuration functions
-source("./scripts/common-functions.R")
+base::source("./scripts/common-functions.R")
 db <- connect_books_db("main")           # For analysis-ready data
 db <- connect_books_db("stage_2")        # For comprehensive data
 
@@ -161,7 +161,7 @@ db_path <- get_db_path("main")
 - **"stage_2"**: Comprehensive database with custom additions
 
 #### Before Any Database Operation:
-1. **Source common functions**: `source("./scripts/common-functions.R")`
+1. **Source common functions**: `base::source("./scripts/common-functions.R")`
 2. **Check config.yml**: Database paths are defined in configuration
 3. **Use proper functions**: `connect_books_db()` or `get_db_path()`
 4. **Never assume paths**: Always verify through the configuration system

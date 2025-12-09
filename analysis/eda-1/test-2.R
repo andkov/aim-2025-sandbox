@@ -1,0 +1,6 @@
+library(DBI)
+source("scripts/common-functions.R")
+db <- connect_books_db("main")
+data <- dbGetQuery(db, "SELECT * FROM ds_year ORDER BY year")
+dbDisconnect(db)
+head(data)

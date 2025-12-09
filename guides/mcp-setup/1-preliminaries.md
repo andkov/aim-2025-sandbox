@@ -60,19 +60,13 @@ LOW SENSITIVITY → MCP access (new capability)
     -   Checks if Node.js already available in session
     -   Adds to PATH only if needed
     -   Provides status feedback
-2.  **Automated Project Status** (`project-status.ps1`):
-    -   Automatically ensures Node.js setup
-    -   Validates project structure
-    -   Checks MCP server status
-    -   Reports git status
-3.  **VS Code Integration**:
+2.  **VS Code Integration**:
     -   Tasks for one-click execution
-    -   Keyboard shortcuts (`Ctrl+Shift+S` for status)
     -   Automatic environment preparation
 
 ### Technical Implementation
 
-**Files Created**: - `setup-nodejs.ps1` - Smart Node.js environment setup - `project-status.ps1` - Comprehensive project status with auto-setup - `.vscode/tasks.json` - VS Code task definitions - `.vscode/keybindings.json` - Keyboard shortcuts
+**Files Created**: - `setup-nodejs.ps1` - Smart Node.js environment setup - `.vscode/tasks.json` - VS Code task definitions - `.vscode/keybindings.json` - Keyboard shortcuts
 
 **Usage Pattern**:
 
@@ -81,8 +75,7 @@ LOW SENSITIVITY → MCP access (new capability)
 .\setup-nodejs.ps1
 
 # Automated (VS Code)
-Ctrl+Shift+S  # Full project status + Node.js setup
-Ctrl+Shift+N  # Node.js setup only
+# Run via Tasks menu or create custom keyboard shortcuts
 ```
 
 ### Next Phase: MCP Server Installation

@@ -86,17 +86,32 @@ source("scripts/test-database-connection.R")
 Open R or RStudio, set your working directory to the project root, and run these commands in order:
 
 ```r
-# 1. Comprehensive environment and workflow check
-comprehensive_project_diagnostics() # Checks your R environment, required packages, project structure, and reports any missing dependencies or setup issues. Does NOT install packages automatically.
+# 1. Test database connection (lightweight check)
+base::source("scripts/test-database-connection.R")
 
-# 2. Analyze overall project status
-analyze_project_status() # Summarizes project health, recent changes, and provides recommendations for next steps in your workflow.
+# 2. Load helper functions (without running the pipeline)
+base::source("scripts/common-functions.R")
 
-# 3. Check flow.R status
-check_flow_status() # Validates the flow.R pipeline, checks for missing or outdated steps, and reports on the status of data and report generation.
+# 3. Connect to the database for exploration
+db <- connect_books_db("main")  # Analysis-ready data
 
-# 4. Check current AI context
-context_refresh() # Scans and summarizes the current AI/project memory context, showing which components are loaded and available for analysis.
+# 4. List available tables
+DBI::dbListTables(db)
+
+# 5. Query data (example)
+data <- DBI::dbGetQuery(db, "SELECT * FROM ds_year ORDER BY year")
+head(data)
+
+# 6. When done, close connection
+DBI::dbDisconnect(db)
+```
+
+**Advanced diagnostics** (if available):
+```r
+# Check environment and workflow (if functions are loaded)
+comprehensive_project_diagnostics()  # Full environment check
+analyze_project_status()             # Project health summary
+check_flow_status()                  # Pipeline validation
 ```
 
 These commands will:

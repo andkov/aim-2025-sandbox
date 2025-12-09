@@ -33,7 +33,7 @@ The Ellis pipeline has created a **multi-stage data architecture** optimized for
 ### Connection Management
 ```r
 # Load database connection functions
-source("./scripts/common-functions.R")
+base::source("./scripts/common-functions.R")
 
 # Connect to primary analytical database
 db <- connect_books_db("main")

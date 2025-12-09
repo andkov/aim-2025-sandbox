@@ -40,9 +40,9 @@ for (stage in db_stages) {
 }
 
 cat("=== DATABASE CONNECTION TEST COMPLETE ===\n")
-cat("\nTo use in your analysis scripts:\n")
+cat('To use in your analysis scripts:\n')
 cat('  library(DBI)\n')
-cat('  source("scripts/common-functions.R")\n')
+cat('  base::source("scripts/common-functions.R")\n')
 cat('  db <- connect_books_db("main")  # or stage_2\n')
 cat('  data <- dbGetQuery(db, "SELECT * FROM your_table LIMIT 10")\n')
 cat('  dbDisconnect(db)\n')

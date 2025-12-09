@@ -91,10 +91,10 @@ Ukrainian → English oblast name mappings verified against KSE admin hierarchy:
 ### Read metadata for field reference
 ```r
 library(DBI)
-con <- dbConnect(RSQLite::SQLite(), "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite")
-metadata <- dbReadTable(con, "ua_metadata")
-ua_oblasts <- dbReadTable(con, "ua_oblasts_aggregated")
-dbDisconnect(con)
+con <- DBI::dbConnect(RSQLite::SQLite(), "data-public/derived/manipulation/SQLite/books-of-ukraine-2.sqlite")
+metadata <- DBI::dbReadTable(con, "ua_metadata")
+ua_oblasts <- DBI::dbReadTable(con, "ua_oblasts_aggregated")
+DBI::dbDisconnect(con)
 
 # View field descriptions by category
 metadata %>% filter(category == "demographics") %>% select(field_name, description)

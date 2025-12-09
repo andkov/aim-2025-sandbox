@@ -80,16 +80,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 - **Expected Output**: Directory-only tree structure
 - **Status**: ✅ Active
 
-### 7. Project Status Check
-- **Task ID**: `Project Status Check`
-- **Command**: `powershell -File project-status.ps1 -Detailed`
-- **Description**: Runs detailed project status check using PowerShell script
-- **When to Use**: Comprehensive project health check, environment validation
-- **Access Method**: Tasks: Run Task → "Project Status Check"
-- **Expected Output**: Detailed project status report
-- **Status**: ✅ Active
-
-### 8. Setup Node.js Environment
+### 7. Setup Node.js Environment
 - **Task ID**: `Setup Node.js Environment`
 - **Command**: `powershell -File setup-nodejs.ps1`
 - **Description**: Initializes Node.js environment setup
@@ -233,7 +224,6 @@ Tasks are designed to respond to natural language prompts that team members migh
 **Last Updated**: October 1, 2025  
 **Maintained By**: Project Team  
 **Related Files**: 
-- `.vscode/tasks.json` - Task definitions (11 active tasks)
+- `.vscode/tasks.json` - Task definitions (10 active tasks)
 - `scripts/wrappers/` - R wrapper scripts for task execution
-- `project-status.ps1` - Project health check script
 - `setup-nodejs.ps1` - Node.js environment setup script

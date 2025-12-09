@@ -30,8 +30,18 @@ This project provides a research analytics environment with integrated AI suppor
 5. **Analysis**: Open ./analysis/eda-1.R and start exploring the data with AI assistance.
 
 **Database Access**: Two-stage database system with prepared data from books-of-ukraine project:
-- `connect_books_db("main")` - Final analytical database (analysis-ready)  
-- `connect_books_db("stage_2")` - Books + admin + custom data
+```r
+# Load helper functions first
+base::source("scripts/common-functions.R")
+
+# Then connect to a database
+db <- connect_books_db("main")      # Analysis-ready data
+db <- connect_books_db("stage_2")   # Books + admin + custom data
+
+# Query data with qualified function calls
+data <- DBI::dbGetQuery(db, "SELECT * FROM ds_year ORDER BY year")
+DBI::dbDisconnect(db)
+```
 
 **Quick Start**: Run `Rscript scripts/test-database-connection.R` to verify database access
 
