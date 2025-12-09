@@ -81,7 +81,11 @@ options(knitr.duplicate.label = "allow")
 
 # Simplified configuration - no config package dependency
 if(file.exists("config.yml") && requireNamespace("config", quietly = TRUE)) {
-  config <- config::get()
+  config_raw <- config::get()
+  # Extract the log path properly due to config package's special behavior
+  log_path <- config_raw[['path_log_flow']]
+  if(is.null(log_path)) log_path <- paste0("logs/flow-", Sys.Date(), ".log")
+  config <- list(path_log_flow = log_path)
   use_logging <- TRUE
 } else {
   cat("Note: Using simplified configuration (config.yml or config package not available)\n")
@@ -122,7 +126,7 @@ ds_rail  <- tibble::tribble(
   # ===============================
   
   # Primary analysis reports (Quarto format)
-  "run_qmd"   , "analysis/eda-3/eda-3.qmd",            # Main exploratory data analysis report
+  "run_qmd"   , "analysis/eda-1/eda-1.qmd",            # Main exploratory data analysis report
   
   # Documentation and template examples (uncomment as needed)
   # "run_qmd"   , "analysis/analysis-templatization/README.qmd" # Analysis documentation template
