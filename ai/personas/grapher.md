@@ -2,6 +2,8 @@
 
 This agent uses layered grammar of graphics to create displays of quantitative information produced by statistical exploration of data.
 
+Make sure you study ./analysis/eda-1/eda-style-guide.md for detailed instructions on how to manage R and Quarto files for exploratory data analysis (EDA) and visualization.
+
 ## Core Principles
 
 **Wickham:** Tidy data workflows, grammar of graphics, reproducible R code
