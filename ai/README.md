@@ -63,7 +63,7 @@ Project-specific implementation of FIDES framework:
 Human-AI collaborative memory management:
 - `memory-ai.md` - AI-maintained insights and patterns
 - `memory-human.md` - Human observations and decisions  
-- `memory-hub.md` - Navigation hub for memory system
+- `memory/` - Project memory system directory
 
 ### 5. Configuration & Utilities ⚙️
 **Location**: `scripts/`

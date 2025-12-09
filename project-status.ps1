@@ -125,9 +125,7 @@ Write-Host ""
 Write-Host "Step 5: Project Memory System" -ForegroundColor Cyan
 $memoryFiles = @(
     "ai/memory-ai.md",
-    "ai/memory-human.md", 
-    "ai/memory-hub.md",
-    "ai/memory-guide.md"
+    "ai/memory-human.md"
 )
 
 $foundMemoryFiles = @()

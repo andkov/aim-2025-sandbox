@@ -310,7 +310,7 @@ if (file.exists(".copilot-persona")) file.remove(".copilot-persona")
 
 - **User Guides**: `../../guides/developer-persona-guide.md`
 - **AI System**: `../README.md` - Overall AI system architecture
-- **Memory System**: `../memory-guide.md` - Project memory and intent tracking
+- **Memory System**: `../memory/` - Project memory and intent tracking
 - **Task System**: `../vscode-tasks-reference.md` - VS Code integration
 
 ---

@@ -38,7 +38,7 @@ This project provides a research analytics environment with integrated AI suppor
 > Hint: Ask Project Manager to check the setup.
 
 **Analysis Templates**: Ready-to-use templates in `analysis/` directory  
-**AI Memory System**: Use `ai/memory-hub.md` to manage research insights  
+**AI Memory System**: Use `ai/memory/` directory to manage research insights  
 **Context Management**: Dynamic AI assistance via the `./ai/` system  
 **Documentation**: Comprehensive guides in `guides/` directory
 

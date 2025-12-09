@@ -21,7 +21,7 @@ This document maintains a comprehensive list of all custom VS Code tasks created
 
 ### ⚠️ **PowerShell Script Standards**
 
-**IMPORTANT**: All `.ps1` files must use ASCII-only characters (no emojis/Unicode). See `ai/onboarding-ai.md` → "PowerShell Scripting Standards" for complete guidelines. Unicode characters cause parsing errors and task failures.
+**IMPORTANT**: All `.ps1` files must use ASCII-only characters (no emojis/Unicode). See `ai/personas/developer.md` → "PowerShell Scripting Standards" for complete guidelines. Unicode characters cause parsing errors and task failures.
 
 
 ## Available Tasks

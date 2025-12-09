@@ -22,12 +22,10 @@ memory_status <- function(project_root = ".") {
   if (exists("get_ai_file_path")) {
     memory_ai_file <- get_ai_file_path("memory-ai", project_root)
     memory_human_file <- get_ai_file_path("memory-human", project_root)  
-    memory_hub_file <- get_ai_file_path("memory-hub", project_root)
   } else {
     # Fallback to legacy paths
     memory_ai_file <- file.path(project_root, "ai", "memory", "memory-ai.md")
     memory_human_file <- file.path(project_root, "ai", "memory", "memory-human.md")
-    memory_hub_file <- file.path(project_root, "ai", "memory", "memory-hub.md")
   }
   
   cat("📊 **Memory System Status** (Books of Ukraine)\n")
@@ -44,12 +42,6 @@ memory_status <- function(project_root = ".") {
     cat("[[memory-human]]:", format(mtime, "%Y-%m-%d"), paste0("(", round(age_days, 1), " days ago)\n"))
   }
   
-  if (file.exists(memory_hub_file)) {
-    mtime <- file.info(memory_hub_file)$mtime  
-    age_days <- as.numeric(Sys.time() - mtime) / 86400
-    cat("[[memory-hub]]:", format(mtime, "%Y-%m-%d"), paste0("(", round(age_days, 1), " days ago)\n"))
-  }
-  
   # Check for detailed logs
   log_dir <- file.path(project_root, "ai", "log")
   if (dir.exists(log_dir)) {
@@ -60,7 +52,7 @@ memory_status <- function(project_root = ".") {
     }
   }
   
-  cat("\n💡 Use [[memory-hub]] for navigation\n")
+  cat("\n💡 Use ai/memory/ directory for project memory\n")
   cat("🔍 Use Ctrl+Shift+F in VS Code for memory search\n")
   return(invisible(TRUE))
 }
@@ -73,7 +65,7 @@ simple_memory_update <- function(entry, project_root = ".") {
   memory_file <- file.path(project_root, "ai", "memory-ai.md")
   
   if (!file.exists(memory_file)) {
-    cat("❌ [[memory-ai]] not found\n")
+    cat("❌ memory-ai.md not found\n")
     return(invisible(FALSE))
   }
   
@@ -83,7 +75,7 @@ simple_memory_update <- function(entry, project_root = ".") {
   # Simple append to end of file
   cat(paste("\n---\n\n", new_entry, "\n"), file = memory_file, append = TRUE)
   
-  cat("✅ Added to [[memory-ai]]\n")
+  cat("✅ Added to memory-ai.md\n")
   return(invisible(TRUE))
 }
 
@@ -95,7 +87,7 @@ human_memory_update <- function(entry, project_root = ".") {
   memory_file <- file.path(project_root, "ai", "memory-human.md")
   
   if (!file.exists(memory_file)) {
-    cat("❌ [[memory-human]] not found\n")
+    cat("❌ memory-human.md not found\n")
     return(invisible(FALSE))
   }
   
@@ -105,7 +97,7 @@ human_memory_update <- function(entry, project_root = ".") {
   # Simple append to end of file
   cat(paste("\n---\n\n", new_entry, "\n"), file = memory_file, append = TRUE)
   
-  cat("✅ Added to [[memory-human]]\n")
+  cat("✅ Added to memory-human.md\n")
   return(invisible(TRUE))
 }
 
@@ -145,7 +137,7 @@ quick_intent_scan <- function(pattern = "TODO|FIXME|XXX|NOTE:") {
   if (found_items == 0) {
     cat("✅ No pending items found\n")
   } else {
-    cat(paste("\n💡 Found", found_items, "items. Consider updating [[memory-human]] or [[memory-ai]]\n"))
+    cat(paste("\n💡 Found", found_items, "items. Consider updating memory-human or memory-ai\n"))
   }
   
   return(invisible(TRUE))
@@ -167,17 +159,13 @@ ai_memory_check <- function() {
   cat("\n")
   
   cat("📝 **Quick Actions:**\n")
-  cat("- simple_memory_update('your note') - Add to [[memory-ai]]\n")
-  cat("- human_memory_update('decision') - Add to [[memory-human]]\n")
-  cat("- Navigate to [[memory-hub]] for full system navigation\n")
-  cat("- Use VS Code search (Ctrl+Shift+F) across ./ai/ folder\n")
-  cat("- Use Foam wiki-links for navigation between memory components\n\n")
+  cat("- simple_memory_update('your note') - Add to memory-ai.md\n")
+  cat("- human_memory_update('decision') - Add to memory-human.md\n")
+  cat("- Use VS Code search (Ctrl+Shift+F) across ./ai/ folder\n\n")
   
   cat("📚 **Memory Components:**\n")
-  cat("- [[memory-hub]] - Central navigation and status\n")
-  cat("- [[memory-human]] - Human decisions and reasoning\n")
-  cat("- [[memory-ai]] - AI technical status and briefings\n")
-  cat("- [[memory-guide]] - System documentation\n")
+  cat("- memory-human.md - Human decisions and reasoning\n")
+  cat("- memory-ai.md - AI technical status and briefings\n")
   cat("- ai/log/ - Detailed implementation reports\n\n")
   
   return(invisible(TRUE))
@@ -194,7 +182,7 @@ context_refresh <- function() {
   cat("- suggest_context() # Get smart suggestions\n")
   cat("- validate_context() # Check current context\n\n")
   cat("For memory navigation:\n")
-  cat("- [[memory-hub]] # Central navigation\n")
+  cat("- ai/memory/ # Memory directory\n")
   cat("- ai_memory_check() # This function\n")
   return(invisible(TRUE))
 }
