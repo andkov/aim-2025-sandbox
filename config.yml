@@ -30,3 +30,6 @@ default:
     analysis: "./analysis/"
     derived: "./data-private/derived/"
     raw: "./data-private/raw/"
+  
+  # Logging configuration
+  path_log_flow: "./logs/flow-current.log"
