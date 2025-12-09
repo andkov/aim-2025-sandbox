@@ -1,6 +1,6 @@
 ---
 title: "Publishing Trends in Ukraine: Exploratory Data Analysis"
-subtitle: "EDA 3 - Books of Ukraine Dataset"
+subtitle: "EDA 1 - Books of Ukraine Dataset"
 author: "Research Group FIDES"
 format:
   html:
@@ -163,6 +163,17 @@ This report operates with the **Books of Ukraine analytical database** - the fin
 #| eval: true
 #| cache: true
 #| fig-cap: "Total number of unique books published in Ukraine by year (2005-2023)"
+```
+
+### Print Run Analysis
+
+```{r}
+#| label: g11
+#| code-summary: Annual print run (circulation) trends
+#| code-fold: true
+#| eval: true
+#| cache: true
+#| fig-cap: "Total circulation (number of copies printed) in Ukraine by year (2005-2023)"
 ```
 
 <!-- As we develop more graphs in the R script, we'll add corresponding chunks here -->

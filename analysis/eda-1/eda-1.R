@@ -1,4 +1,5 @@
 # nolint start
+# AI agents must consult ./analysis/eda-1/eda-style-guide.md before making changes to this file.
 rm(list = ls(all.names = TRUE)) # Clear the memory of variables from previous run. This is not called by knitr, because it's above the first chunk.
 cat("\014") # Clear the console
 # verify root location
@@ -127,6 +128,66 @@ silent_mini_eda("ds_year")
 
 # ---- g1 -----------------------------------------------------
 # Let's see the trends of annual publication over time.  Let's see th total number of books published in Ukraine each year. 
+
+g1 <- ds_year %>% 
+  ggplot(aes(x = year, y = title_count)) +
+  geom_line(color = "#0057B7", linewidth = 1.2) +
+  geom_point(color = "#0057B7", size = 2.5) +
+  scale_x_continuous(breaks = seq(2005, 2023, 2)) +
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(
+    title = "Annual Book Publication Trends in Ukraine (2005-2023)",
+    subtitle = "Total number of unique titles published each year",
+    x = "Year",
+    y = "Number of Titles Published",
+    caption = "Source: Book Chamber of Ukraine (BCU)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 12, color = "grey40"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank()
+  )
+
+print(g1) # unless you can install Rtools on your machine, interactive plots by httpgd won't work in VS Code
+# But this is a welcome limitation that we will use to make it more human-centric
+# 
+# Save the plot
+ggsave(paste0(prints_folder, "g1-annual-publication-trends.png"), 
+       g1, width = 10, height = 6, dpi = 300, bg = "white")
+
+# ---- g11 ---------------------------------------------------
+# Alternative visualization showing print run (circulation) instead of unique titles
+
+g11 <- ds_year %>% 
+  ggplot(aes(x = year, y = copy_count)) +
+  geom_line(color = "#B8860B", linewidth = 2.0) +  # darker shadow layer
+  geom_line(color = "#FFD700", linewidth = 1.2) +
+  geom_point(color = "#B8860B", size = 3.2) +  # darker shadow for points
+  geom_point(color = "#FFD700", size = 2.5) +
+  scale_x_continuous(breaks = seq(2005, 2023, 2)) +
+  scale_y_continuous(labels = scales::comma_format()) +
+  labs(
+    title = "Annual Book Print Run Trends in Ukraine (2005-2023)",
+    subtitle = "Total circulation (number of copies printed each year)",
+    x = "Year",
+    y = "Print Run (Thousands of Copies)",
+    caption = "Source: Book Chamber of Ukraine (BCU)"
+  ) +
+  theme_minimal() +
+  theme(
+    plot.title = element_text(size = 14, face = "bold"),
+    plot.subtitle = element_text(size = 12, color = "grey40"),
+    axis.text.x = element_text(angle = 45, hjust = 1),
+    panel.grid.minor = element_blank()
+  )
+
+print(g11)
+
+# Save the plot
+ggsave(paste0(prints_folder, "g11-annual-print-run-trends.png"), 
+       g11, width = 10, height = 6, dpi = 300, bg = "white")
 
 
 
