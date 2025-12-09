@@ -127,7 +127,7 @@ silent_mini_eda("ds_year")
 # ---- inspect-data-2 -------------------------------------
 
 # ---- g1 -----------------------------------------------------
-# Let's see the trends of annual publication over time.  Let's see th total number of books published in Ukraine each year. 
+# Let's see the trends of annual publication over time.   
 
 g1 <- ds_year %>% 
   ggplot(aes(x = year, y = title_count)) +

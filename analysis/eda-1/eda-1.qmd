@@ -13,7 +13,7 @@ format:
     code-line-numbers: true
     self-contained: true
     embed-resources: true
-    keep-md: true
+    keep-md: false
 editor: visual
 editor_options: 
   chunk_output_type: console
