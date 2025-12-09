@@ -224,13 +224,14 @@ if(length(setup_errors) == 0 && length(setup_warnings) == 0) {
   }
 }
 
-cat("\n=========================================================\n")
+cat("=========================================================\n")
 cat("📖 NEED HELP?\n")
 cat("=========================================================\n")
 cat("If you encounter issues:\n")
 cat("1. Check the README.md file for detailed setup instructions\n")
-cat("2. Review the ai/onboarding-ai.md for project-specific guidance\n") 
-cat("3. Ask a team member for assistance\n")
+cat("2. Review the ai/README.md for AI support system guidance\n") 
+cat("3. Review the ai/personas/README.md for persona management\n")
+cat("4. Ask a team member for assistance\n")
 cat("\n💡 TIP: Run this script again after making changes!\n")
 cat("=========================================================\n")
 

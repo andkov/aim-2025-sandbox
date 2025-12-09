@@ -34,7 +34,7 @@ Consult template/example in ./analysis/eda-1
 analysis/eda-1/
 ├── eda-1.R           # Development & experimentation layer
 ├── eda-1.qmd         # Publication & reporting layer  
-├── workflow-guide.md # This guide
+├── eda-style-guide.md # EDA workflow and style guide
 ├── data-local/       # Local outputs and intermediate files
 └── prints/           # Saved plots and figures
 ```
