@@ -6,7 +6,7 @@ cat("\014") # Clear the console
 cat("Working directory: ", getwd()) # Must be set to Project Directory
 # Project Directory should be the root by default unless overwritten
 
-# ---- load-packages -----------------------------------------------------------
+# ---- load-packages ------------------------------------
 # Choose to be greedy: load only what's needed
 # Three ways, from least (1) to most(3) greedy:
 # -- 1.Attach these packages so their functions don't need to be qualified: 
@@ -25,7 +25,7 @@ library(emmeans)   # for interpreting model results
 library(ggalluvial)
 library(janitor)  # tidy data
 library(testit)   # For asserting conditions meet expected patterns.
-# ---- httpgd (VS Code interactive plots) ------------------------------------
+# ---- httpgd (VS Code interactive plots) ---------------
 # If the httpgd package is installed, try to start it so VS Code R extension
 # can display interactive plots. This is optional and wrapped in tryCatch so
 # the script still runs when httpgd is absent or fails to start.
@@ -48,11 +48,11 @@ if (requireNamespace("httpgd", quietly = TRUE)) {
 	message("httpgd not installed. To enable interactive plotting in VS Code, install httpgd (binary recommended on Windows) or use other devices (svg/png).")
 }
 
-# ---- load-sources ------------------------------------------------------------
+# ---- load-sources -------------------------------------
 base::source("./scripts/common-functions.R") # project-level
 base::source("./scripts/operational-functions.R") # project-level
 
-# ---- declare-globals ---------------------------------------------------------
+# ---- declare-globals ----------------------------------
 
 local_root <- "./analysis/eda-1/"
 local_data <- paste0(local_root, "data-local/") # for local outputs
@@ -64,10 +64,10 @@ if (!fs::dir_exists(data_private_derived)) {fs::dir_create(data_private_derived)
 
 prints_folder <- paste0(local_root, "prints/")
 if (!fs::dir_exists(prints_folder)) {fs::dir_create(prints_folder)}
-# ---- declare-functions -------------------------------------------------------
+# ---- declare-functions --------------------------------
 # base::source(paste0(local_root,"local-functions.R")) # project-level
 
-# ---- load-data --------------------------------------
+# ---- load-data ----------------------------------------
 
 # Connect to the default Books of Ukraine database using custom functions
 # Note: Using 'main' database which contains analysis-ready tables created by Ellis pipeline
@@ -120,13 +120,13 @@ silent_mini_eda("ds_year")
 
 # ---- tweak-data-0 -------------------------------------
 
-# ---- inspect-data-0 -------------------------------------
+# ---- inspect-data-0 -----------------------------------
 
-# ---- inspect-data-1 -------------------------------------
+# ---- inspect-data-1 -----------------------------------
 
-# ---- inspect-data-2 -------------------------------------
+# ---- inspect-data-2 -----------------------------------
 
-# ---- g1 -----------------------------------------------------
+# ---- g1 -----------------------------------------------
 # Let's see the trends of annual publication over time.   
 
 g1 <- ds_year %>% 
@@ -157,7 +157,7 @@ print(g1) # unless you can install Rtools on your machine, interactive plots by 
 ggsave(paste0(prints_folder, "g1-annual-publication-trends.png"), 
        g1, width = 10, height = 6, dpi = 300, bg = "white")
 
-# ---- g11 ---------------------------------------------------
+# ---- g11 ----------------------------------------------
 # Alternative visualization showing print run (circulation) instead of unique titles
 
 g11 <- ds_year %>% 
@@ -188,7 +188,6 @@ print(g11)
 # Save the plot
 ggsave(paste0(prints_folder, "g11-annual-print-run-trends.png"), 
        g11, width = 10, height = 6, dpi = 300, bg = "white")
-
 
 
 # nolint end
