@@ -1,6 +1,6 @@
 # AIM 2025 Sandbox
 
-This project provides a research analytics environment with integrated AI support, memory systems, and reproducible analysis workflows. It combines data analysis capabilities with advanced AI assistance for social science research. This project uses public data on Ukrainian publishing trends sourced from the [Books Chamber of Ukraine](https://ukrbook.net/) and prepared for analysis by [github.com/rg-fides/books-of-ukraine](https://github.com/rg-fides/books-of-ukraine).
+This project provides a research analytics environment with integrated AI support, memory systems, and reproducible analysis workflows. It combines data analysis capabilities with advanced AI assistance for social science research. This project uses public data on Ukrainian publishing trends sourced from the [Books Chamber of Ukraine](https://ukrbook.net/) and prepared for analysis by [github.com/rg-fides/books-of-ukraine](https://github.com/rg-fides/books-of-ukraine). See the larger context of the use of AI in reproducible research in this [slide deck](https://www.linkedin.com/posts/andriy-v-koval_on-the-uses-of-ai-in-reproducible-research-activity-7378565074883485696-yZoZ?utm_source=share&utm_medium=member_desktop&rcm=ACoAAAPuyGkBVynWtdzF2bvfJuen2oYrhDWzu6c). 
 
 ## 🧠 **AI-Enhanced Features**
 
