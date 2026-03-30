@@ -23,7 +23,7 @@ This repository's AI support system has been updated with modern orchestration i
 ## 🚀 **Getting Started**
 
 1. **Setup**: Install VS Code and activate Copilot
-2. **Fork Repository**: [github.com/andriy.koval/aim-2025-sandbox](https://github.com/andriy.koval/aim-2025-sandbox)
+2. **Fork Repository**: [github.com/andriy.koval/aim-2025-sandbox](https://github.com/andkov/aim-2025-sandbox)
 3. **Environment**: Work with AI agent to install dependencies
 4. **Explore project**: Request project briefing from Copilot
 5. **Analysis**: Open [`analysis/eda-1/eda-1.R`](analysis/eda-1/eda-1.R) and start exploring the data with AI assistancenced Research Analytics
