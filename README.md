@@ -7,11 +7,11 @@ This project provides a research analytics environment with integrated AI suppor
 - **Project Memory System**: Separate memory tracks for human decisions and AI technical notes, with summary and detailed views
 - **Context Management**: Dynamic AI context loading for specific analytical tasks (i.e. flexible system prompt) 
 - **Copilot Integration**: GitHub Copilot optimized for research analytics workflows (e.g. tasks, extensions)
+- **Orchestration systems**: Composing and Publishing orchestra. 
 
+## 🔄 **AI Orchestration Update (2026-03-30)**
 
-## 🔄 **AI Orchestration Update (2025-03-30)**
-
-This repository's AI support system has been updated with modern orchestration infrastructure imported from the [quick-start-template](https://github.com/GovAlta/quick-start-template) and [caseload-forecast-demo](https://github.com/andkov/caseload-forecast-demo) repos. The new `.github/` layer adds reusable agents, skills, prompts, templates, and orchestration guides for composing and publishing workflows — complementing the existing project-specific `ai/` persona and context system. See [`.github/UPDATE-2026-03-30.md`](.github/UPDATE-2025-03-30.md) for full details.
+This repository's AI support system has been updated with modern orchestration infrastructure imported from the [quick-start-template](https://github.com/GovAlta/quick-start-template) and [caseload-forecast-demo](https://github.com/andkov/caseload-forecast-demo) repos. The new `.github/` layer adds reusable agents, skills, prompts, templates, and orchestration guides for composing and publishing workflows — complementing the existing project-specific `ai/` persona and context system. See [`.github/UPDATE-2026-03-30.md`](.github/UPDATE-2026-03-30.md) for full details.
 
 ## 📊 **Research Analytics Capabilities**
 
@@ -27,7 +27,6 @@ This repository's AI support system has been updated with modern orchestration i
 3. **Environment**: Work with AI agent to install dependencies
 4. **Explore project**: Request project briefing from Copilot
 5. **Analysis**: Open [`analysis/eda-1/eda-1.R`](analysis/eda-1/eda-1.R) and start exploring the data with AI assistancenced Research Analytics
-
 
 ## 🎯 **For Researchers**
 
