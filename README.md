@@ -11,7 +11,7 @@ This project provides a research analytics environment with integrated AI suppor
 
 ## 🔄 **AI Orchestration Update (2025-03-30)**
 
-This repository's AI support system has been updated with modern orchestration infrastructure imported from the [quick-start-template](https://github.com/GovAlta/quick-start-template) and [caseload-forecast-demo](https://github.com/andkov/caseload-forecast-demo) repos. The new `.github/` layer adds reusable agents, skills, prompts, templates, and orchestration guides for composing and publishing workflows — complementing the existing project-specific `ai/` persona and context system. See [`.github/UPDATE-2025-03-30.md`](.github/UPDATE-2025-03-30.md) for full details.
+This repository's AI support system has been updated with modern orchestration infrastructure imported from the [quick-start-template](https://github.com/GovAlta/quick-start-template) and [caseload-forecast-demo](https://github.com/andkov/caseload-forecast-demo) repos. The new `.github/` layer adds reusable agents, skills, prompts, templates, and orchestration guides for composing and publishing workflows — complementing the existing project-specific `ai/` persona and context system. See [`.github/UPDATE-2026-03-30.md`](.github/UPDATE-2025-03-30.md) for full details.
 
 ## 📊 **Research Analytics Capabilities**
 
